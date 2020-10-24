@@ -17,7 +17,7 @@ const routes: Routes = [
 		component: Home,
 	},
 	{
-		path: "/search/:query",
+		path: "/search",
 		exact: true,
 		component: SearchHeroes,
 	},

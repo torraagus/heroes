@@ -1,7 +1,11 @@
 import React, { FC, useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { AnyAction, Dispatch } from "redux";
-import { searchHeroes } from "../../redux";
+import { RouteComponentProps, withRouter } from "react-router-dom";
+import { AnyAction, Dispatch, compose } from "redux";
+import { clearState, searchHeroes } from "../../redux";
+import { Container } from "../../styled/Container";
+import SearchForm from "./SearchForm";
+import { HomeBtn } from "./searchHeroes.styles";
 
 type Props = {
   heroesData: {
@@ -10,38 +14,75 @@ type Props = {
     error: string;
   };
   searchHeroes(query: string): (dispatch: Dispatch<AnyAction>) => void;
+  clearState(): (dispatch: Dispatch<AnyAction>) => void;
 };
 
-const HeroesContainer: FC<Props> = ({ heroesData, searchHeroes }) => {
-  const [query, setQuery] = useState("");
+const HeroesContainer: FC<Props & RouteComponentProps> = ({
+  heroesData,
+  searchHeroes,
+  clearState,
+  location,
+  history,
+}) => {
+  const query = location.search.substr(1);
 
-  return heroesData.loading ? (
-    <h2>Loading...</h2>
-  ) : (
-    <div>
-      <h4>Search a hero</h4>
-      <form onSubmit={() => searchHeroes(query)}>
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <input type="submit" value="Search" />
-      </form>
-      {heroesData?.heroes?.length > 0 ? (
-        <>
-          <h1>Heroes ({heroesData?.heroes?.length})</h1>
-          {heroesData?.heroes?.map((h) => (
-            <p key={h.id}>
-              ({h.id}) {h.name}
-            </p>
-          ))}
-        </>
-      ) : (
-        <p>{heroesData.error}</p>
-      )}
-    </div>
-  );
+  useEffect(() => {
+    searchHeroes(query);
+    return () => {
+      clearState();
+    };
+  }, [query]);
+
+  if (heroesData.loading) {
+    return (
+      <Container
+        display="flex"
+        flexDir="column"
+        justifyContent="center"
+        alignItems="center"
+        bgColor={"#fff"}
+      >
+        <h2>Loading...</h2>
+      </Container>
+    );
+  } else if (heroesData.heroes.length > 0 || heroesData.error != "") {
+    return (
+      <Container
+        height="auto"
+        display="flex"
+        flexDir="column"
+        justifyContent="center"
+        alignItems="center"
+        bgColor={"#fff"}
+        padding={"2rem 0"}
+      >
+        <Container
+          height="auto"
+          width="90vw"
+          display="flex"
+          justifyContent="flex-start"
+          padding={"1rem 0"}
+        >
+          <HomeBtn onClick={() => history.push("/")}>Home</HomeBtn>
+        </Container>
+        <SearchForm search={query} flexDir="row" />
+        {heroesData.heroes.length > 0 ? (
+          <>
+            <h2>Results ({heroesData.heroes.length})</h2>
+            {heroesData.heroes.map((h) => (
+              <p key={h.id}>
+                ({h.id}) {h.name}
+              </p>
+            ))}
+          </>
+        ) : (
+          <p>{heroesData.error}</p>
+        )}
+      </Container>
+    );
+  } else {
+    return null;
+  }
 };
 
 const mapStateToProps = (state) => {
@@ -53,7 +94,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     searchHeroes: (query: string) => dispatch(searchHeroes(query)),
+    clearState: () => dispatch(clearState()),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HeroesContainer);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withRouter
+)(HeroesContainer);
