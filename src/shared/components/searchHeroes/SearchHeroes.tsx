@@ -4,8 +4,10 @@ import { RouteComponentProps, withRouter } from "react-router-dom";
 import { AnyAction, Dispatch, compose } from "redux";
 import { clearState, searchHeroes } from "../../redux";
 import { Container } from "../../styled/Container";
+import HeroList from "../heroList/HeroList";
+import Loader from "../loader/Loader";
 import SearchForm from "./SearchForm";
-import { HomeBtn } from "./searchHeroes.styles";
+import { HomeBtn, Error } from "./searchHeroes.styles";
 
 type Props = {
   heroesData: {
@@ -34,17 +36,7 @@ const HeroesContainer: FC<Props & RouteComponentProps> = ({
   }, [query]);
 
   if (heroesData.loading) {
-    return (
-      <Container
-        display="flex"
-        flexDir="column"
-        justifyContent="center"
-        alignItems="center"
-        bgColor={"#fff"}
-      >
-        <h2>Loading...</h2>
-      </Container>
-    );
+    return <Loader />;
   } else if (heroesData.heroes.length > 0 || heroesData.error != "") {
     return (
       <Container
@@ -67,16 +59,9 @@ const HeroesContainer: FC<Props & RouteComponentProps> = ({
         </Container>
         <SearchForm search={query} flexDir="row" />
         {heroesData.heroes.length > 0 ? (
-          <>
-            <h2>Results ({heroesData.heroes.length})</h2>
-            {heroesData.heroes.map((h) => (
-              <p key={h.id}>
-                ({h.id}) {h.name}
-              </p>
-            ))}
-          </>
+          <HeroList heroes={heroesData.heroes} />
         ) : (
-          <p>{heroesData.error}</p>
+          <Error>{heroesData.error}</Error>
         )}
       </Container>
     );
