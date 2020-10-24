@@ -29,6 +29,8 @@ const reducer = (state = initialState, action) => {
         heroes: [],
         error: action.payload,
       };
+    case "CLEAR_STATE":
+      return { heroes: [], error: "", loading: false };
 
     default:
       return state;

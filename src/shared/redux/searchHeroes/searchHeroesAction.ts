@@ -1,4 +1,3 @@
-
 import fetch from "isomorphic-fetch";
 import { Dispatch } from "redux";
 import { fullLoadingBar, startLoadingBar } from "../loadingBar/loadingAction";
@@ -49,5 +48,13 @@ export const searchHeroes = (query: string) => {
         dispatch(fullLoadingBar());
         dispatch(searchHeroesFailure(errMsg));
       });
+  };
+};
+
+export const clearState = () => {
+  return (dispatch: Dispatch) => {
+    dispatch({
+      type: "CLEAR_STATE",
+    });
   };
 };
