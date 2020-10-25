@@ -32,7 +32,7 @@ export const Submit = styled.input<SubmitProps>`
   color: white;
   text-transform: uppercase;
   border: none;
-  font-style: bold;
+  font-weight: bold;
   outline: none;
 
   :hover {

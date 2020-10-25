@@ -37,7 +37,7 @@ const HeroesContainer: FC<Props & RouteComponentProps> = ({
 
   if (heroesData.loading) {
     return <Loader />;
-  } else if (heroesData.heroes.length > 0 || heroesData.error != "") {
+  } else if (heroesData.heroes.length >= 0 || heroesData.error != "") {
     return (
       <Container
         height="auto"

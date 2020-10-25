@@ -43,8 +43,63 @@ export const fetchHeroeDetails = (id: string) => {
           dispatch(fetchHeroeDetailsFailure(data.error));
         } else {
           const { response, ...details } = data;
-          dispatch(fetchHeroeDetailsSuccess({...details}));
+          dispatch(fetchHeroeDetailsSuccess({ ...details }));
         }
+      })
+      .catch((err) => {
+        const errMsg = err.message;
+        dispatch(fullLoadingBar());
+        dispatch(fetchHeroeDetailsFailure(errMsg));
+      });
+  };
+};
+
+export const compareHeroes = (one: string, two: string) => {
+  return (dispatch: Dispatch) => {
+    dispatch(fetchHeroeDetailsRequest());
+    dispatch(startLoadingBar());
+
+    const urls = [
+      `https://www.superheroapi.com/api.php/${token}/${one}`,
+      `https://www.superheroapi.com/api.php/${token}/${two}`,
+    ];
+
+    const promises = urls.map((url) => fetch(url));
+
+    Promise.all(promises)
+      .then((res) => res.map((p) => p.json()))
+      .then(async ([d1, d2]) => {
+        const {
+          response: res1,
+          name: name1,
+          id: id1,
+          powerstats: ps1,
+          image: img1,
+        } = await d1;
+        const {
+          response: res2,
+          name: name2,
+          id: id2,
+          powerstats: ps2,
+          image: img2,
+        } = await d2;
+        if (res1 === "error" || res2 === "error") {
+          dispatch(
+            fetchHeroeDetailsFailure(
+              "Error fetching heroes data. Please check that both ids were passed."
+            )
+          );
+        } else {
+          dispatch(
+            fetchHeroeDetailsSuccess({
+              comparison: [
+                { id: id1, name: name1, ...ps1, ...img1 },
+                { id: id2, name: name2, ...ps2, ...img2 },
+              ],
+            })
+          );
+        }
+        dispatch(fullLoadingBar());
       })
       .catch((err) => {
         const errMsg = err.message;

@@ -39,9 +39,12 @@ export const searchHeroes = (query: string) => {
       .then((response) => response.json())
       .then((data) => {
         dispatch(fullLoadingBar());
-        data.response === "error"
-          ? dispatch(searchHeroesFailure(data.error))
-          : dispatch(searchHeroesSuccess(data.results));
+        if (data.response === "error") {
+          dispatch(searchHeroesFailure(data.error))
+        } else {
+          // const res = data.results.filter(hero => hero.biography.publisher === 'Marvel');
+          dispatch(searchHeroesSuccess(data.results));
+        }
       })
       .catch((err) => {
         const errMsg = err.message;

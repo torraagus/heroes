@@ -21,7 +21,7 @@ const HeroItem: FC<Props & RouteComponentProps> = ({ hero, history }) => {
       onClick={() => history.push(`/heroes/${hero.id}`)}
     >
       <img
-        style={{ maxWidth: "100%", borderRadius: 15 }}
+        style={{ height: "128px", borderRadius: 15 }}
         onLoad={() => setImgLoaded(true)}
         onError={() => setImgLoaded(true)}
         src={hero.image.url}
