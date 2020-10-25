@@ -1,4 +1,4 @@
-import Heroe from "./components/heroe/Heroe";
+import HeroeDetails from "./components/heroDetails/HeroeDetails";
 import Home from "./components/home/Home";
 import SearchHeroes from "./components/searchHeroes/SearchHeroes";
 
@@ -24,7 +24,7 @@ const routes: Routes = [
 	{
 		path: "/heroes/:id",
 		exact: true,
-		component: Heroe,
+		component: HeroeDetails,
 	},
 ];
 
