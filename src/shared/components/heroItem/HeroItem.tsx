@@ -1,24 +1,41 @@
-import React from "react";
+import React, { FC, useState } from "react";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 import { Container } from "../../styled/Container";
+import { LoaderIcon } from "./heroItem.styles";
 
-const HeroItem = ({ hero }) => {
-  console.log(hero);
+type Props = { hero: { name: string; id: string; image: { url: string } } };
+
+const HeroItem: FC<Props & RouteComponentProps> = ({ hero, history }) => {
+  const [imgLoaded, setImgLoaded] = useState(false);
+
   return (
     <Container
       height="auto"
-      width="auto"
+      width="128px"
       flexDir="column"
       alignItems="center"
       justifyContent="center"
       display="flex"
       padding=".25rem .25rem"
+      hover={true}
+      onClick={() => history.push(`/heroes/${hero.id}`)}
     >
-      <img style={{ height: 128, borderRadius: 15 }} src={hero.image.url} />
-      {/* <p>
-        #{hero.id} - {hero.name}
-      </p> */}
+      <img
+        style={{ maxWidth: "100%", borderRadius: 15 }}
+        onLoad={() => setImgLoaded(true)}
+        onError={() => setImgLoaded(true)}
+        src={hero.image.url}
+      />
+      {!imgLoaded ? (
+        <LoaderIcon />
+      ) : (
+        <>
+          <h2>#{hero.id}</h2>
+          <small style={{ textAlign: "center" }}>{hero.name}</small>
+        </>
+      )}
     </Container>
   );
 };
 
-export default HeroItem;
+export default withRouter(HeroItem);
