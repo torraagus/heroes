@@ -11,6 +11,7 @@ type ContainerProps = {
   color?: string;
   padding?: string;
   flexWrap?: string;
+  hover?: boolean;
 };
 
 export const Container = styled.div<ContainerProps>`
@@ -24,4 +25,10 @@ export const Container = styled.div<ContainerProps>`
   color: ${({ color }) => (color ? color : "#000")};
   padding: ${({ padding }) => padding && padding};
   flex-wrap: ${({ flexWrap }) => flexWrap && flexWrap};
+
+  :hover {
+    cursor: ${({ hover }) => hover && "pointer"};
+    opacity: ${({ hover }) => hover && "75%"};
+    border-radius: ${({ hover }) => hover && "15px"};
+  }
 `;
