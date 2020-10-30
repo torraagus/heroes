@@ -6,6 +6,7 @@ import CompareHeroes from "../../compareHeroes/CompareHeroes";
 const CompareSection = () => {
   return (
     <Container
+      id="compare"
       display="flex"
       flexDir="column"
       justifyContent="center"

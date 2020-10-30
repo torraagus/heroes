@@ -7,7 +7,7 @@ import { Container } from "../../styled/Container";
 import HeroList from "../heroList/HeroList";
 import Loader from "../loader/Loader";
 import SearchForm from "./SearchForm";
-import { HomeBtn, Error } from "./searchHeroes.styles";
+import { HomeBtn, Error, props } from "./searchHeroes.styles";
 
 type Props = {
   heroesData: {
@@ -39,24 +39,7 @@ const HeroesContainer: FC<Props & RouteComponentProps> = ({
     return <Loader />;
   } else if (heroesData.heroes.length >= 0 || heroesData.error != "") {
     return (
-      <Container
-        height="auto"
-        display="flex"
-        flexDir="column"
-        justifyContent="center"
-        alignItems="center"
-        bgColor={"#fff"}
-        padding={"2rem 0"}
-      >
-        <Container
-          height="auto"
-          width="90vw"
-          display="flex"
-          justifyContent="flex-start"
-          padding={"1rem 0"}
-        >
-          <HomeBtn onClick={() => history.push("/")}>Home</HomeBtn>
-        </Container>
+      <Container {...props}>
         <SearchForm search={query} flexDir="row" />
         {heroesData.heroes.length > 0 ? (
           <HeroList heroes={heroesData.heroes} />

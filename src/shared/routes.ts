@@ -5,6 +5,7 @@ import SearchHeroes from "./components/searchHeroes/SearchHeroes";
 export interface IRoute {
 	path: string;
 	exact?: boolean;
+	noNavBar?: boolean;
 	component: any;
 }
 

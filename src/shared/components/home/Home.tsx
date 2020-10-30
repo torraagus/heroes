@@ -38,7 +38,7 @@ const Home: FC<Props> = () => {
         </Container>
       </Container>
       <Container
-        height="50vh"
+        height="100vh"
         display="flex"
         justifyContent="center"
         alignItems="center"
@@ -53,7 +53,7 @@ const Home: FC<Props> = () => {
         justifyContent="center"
         alignItems="center"
         bgColor={"#444"}
-        color={colors.terciary}
+        color={"#bbb"}
       >
         <small>Developed by Agustin Torra</small>
       </Container>

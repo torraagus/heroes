@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { compose } from "redux";
 import { compareHeroes } from "../../redux";
 import { Container } from "../../styled/Container";
-import { Form, Submit, Input } from "./compareHeroes.styles";
+import HeroImage from "../heroImage/HeroImage";
+import { Form, Submit, Input, wrapperProps, heroProps } from "./compareHeroes.styles";
+import Powerstats from "./Powerstats";
 
-const CompareHeroes = ({ heroData, fetchHero }) => {
+const CompareHeroes = ({ hero, compare, history }) => {
   const [idOne, setIdOne] = useState("");
   const [idTwo, setIdTwo] = useState("");
 
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    fetchHero(idOne, idTwo);
+    compare(idOne, idTwo);
   };
 
   return (
@@ -32,49 +36,17 @@ const CompareHeroes = ({ heroData, fetchHero }) => {
         </div>
         <Submit margin="1rem 0" type="submit" value="Compare" />
       </Form>
-      <Container
-        height="auto"
-        display="flex"
-        bgColor="inherit"
-        justifyContent="center"
-      >
-        {heroData.error && <p>{heroData.error}</p>}
-        {heroData.details.comparison?.map((p) => (
+      <Container {...wrapperProps}>
+        {hero.error && <p style={{ color: "red" }}>{hero.error}</p>}
+        {hero.details.comparison?.map((hero) => (
           <Container
-            height="auto"
-            width="108px"
-            padding="1rem"
-            bgColor="white"
-            margin=".25rem"
-            borderRadius="15px"
-            hover={true}
-            key={p.id}
+            {...heroProps}
+            key={hero.id}
+            onClick={() => history.push(`heroes/${hero.id}`)}
           >
-            <img style={{ height: 128 }} src={p.url} />
-            <p>#{p.id}</p>
-            <p style={{ fontWeight: "bold" }}>{p.name}</p>
-            <p>
-              <small>Combat: </small>{" "}
-              <b>{p.combat != "null" ? p.combat : "-"}</b>
-            </p>
-            <p>
-              <small>Intelligence: </small>{" "}
-              <b>{p.intelligence != "null" ? p.intelligence : "-"}</b>
-            </p>
-            <p>
-              <small>Strength: </small>{" "}
-              <b>{p.strength != "null" ? p.strength : "-"}</b>
-            </p>
-            <p>
-              <small>Durability: </small>{" "}
-              <b>{p.durability != "null" ? p.durability : "-"}</b>
-            </p>
-            <p>
-              <small>Power: </small> <b>{p.power != "null" ? p.power : "-"}</b>
-            </p>
-            <p>
-              <small>Speed: </small> <b>{p.speed != "null" ? p.speed : "-"}</b>
-            </p>
+            <HeroImage hero={hero}>
+              <Powerstats hero={hero} />
+            </HeroImage>
           </Container>
         ))}
       </Container>
@@ -84,14 +56,17 @@ const CompareHeroes = ({ heroData, fetchHero }) => {
 
 const mapStateToProps = (state) => {
   return {
-    heroData: state.heroeDetails,
+    hero: state.heroeDetails,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchHero: (one: string, two: string) => dispatch(compareHeroes(one, two)),
+    compare: (one: string, two: string) => dispatch(compareHeroes(one, two)),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CompareHeroes);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withRouter
+)(CompareHeroes);

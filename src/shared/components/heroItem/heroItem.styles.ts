@@ -16,3 +16,14 @@ export const LoaderIcon = styled(BiLoaderAlt)`
     }
   }
 `;
+
+export const ContainerProps = {
+  height: "auto",
+  width: "128px",
+  flexDir: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  display: "flex",
+  padding: ".25rem .25rem",
+  hover: true,
+};

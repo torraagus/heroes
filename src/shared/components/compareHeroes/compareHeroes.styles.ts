@@ -57,10 +57,27 @@ export const Input = styled.input`
   margin: 1rem 10px 0 0;
 
   :nth-child(2) {
-      margin: 1rem 0 0 0;
+    margin: 1rem 0 0 0;
   }
 
   :focus {
     border: 1px solid ${colors.secondary};
   }
 `;
+
+export const wrapperProps = {
+  height: "auto",
+  display: "flex",
+  bgColor: "inherit",
+  justifyContent: "center",
+};
+
+export const heroProps = {
+  height: "auto",
+  width: "108px",
+  padding: "1rem",
+  bgColor: "white",
+  margin: ".25rem",
+  borderRadius: "15px",
+  hover: true,
+};

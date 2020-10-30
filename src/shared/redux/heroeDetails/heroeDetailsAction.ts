@@ -86,15 +86,15 @@ export const compareHeroes = (one: string, two: string) => {
         if (res1 === "error" || res2 === "error") {
           dispatch(
             fetchHeroeDetailsFailure(
-              "Error fetching heroes data. Please check that both ids were passed."
+              "Error fetching heroes data. Please check that both ids are right."
             )
           );
         } else {
           dispatch(
             fetchHeroeDetailsSuccess({
               comparison: [
-                { id: id1, name: name1, ...ps1, ...img1 },
-                { id: id2, name: name2, ...ps2, ...img2 },
+                { id: id1, name: name1, ...ps1, image: { ...img1 } },
+                { id: id2, name: name2, ...ps2, image: { ...img2 } },
               ],
             })
           );

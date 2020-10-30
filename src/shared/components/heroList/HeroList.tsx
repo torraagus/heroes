@@ -1,26 +1,13 @@
 import React from "react";
 import { Container } from "../../styled/Container";
+import { wrapperProps, resultsProps } from "./heroList.styles";
 import HeroItem from "../heroItem/HeroItem";
 
 const HeroList = ({ heroes }) => {
   return (
-    <Container
-      width="90vw"
-      height="auto"
-      display="flex"
-      flexDir="column"
-      alignItems="center"
-      padding="1rem 0"
-    >
+    <Container {...wrapperProps}>
       <h2>Results ({heroes.length})</h2>
-      <Container
-        width="90vw"
-        height="auto"
-        display="flex"
-        flexWrap="wrap"
-        justifyContent="center"
-        padding="1rem 0"
-      >
+      <Container {...resultsProps}>
         {heroes.map((hero) => (
           <HeroItem key={hero.id} hero={hero} />
         ))}
