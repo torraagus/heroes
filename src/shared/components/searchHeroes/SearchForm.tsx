@@ -2,7 +2,10 @@ import React, { FC, useRef, useState, useEffect } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { Form, Submit, Input } from "./searchForm.styles";
 
-type Props = { search: string; flexDir: string };
+type Props = {
+  search: string;
+  flexDir: string;
+};
 
 const SearchForm: FC<Props & RouteComponentProps> = ({
   search,
@@ -15,8 +18,8 @@ const SearchForm: FC<Props & RouteComponentProps> = ({
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     history.push({
-      pathname: "/search",
-      search: query,
+      pathname: "search",
+      search: query
     });
   };
 

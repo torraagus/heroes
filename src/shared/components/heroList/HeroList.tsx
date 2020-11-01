@@ -7,11 +7,13 @@ const HeroList = ({ heroes }) => {
   return (
     <Container {...wrapperProps}>
       <h2>Results ({heroes.length})</h2>
-      <Container {...resultsProps}>
-        {heroes.map((hero) => (
-          <HeroItem key={hero.id} hero={hero} />
-        ))}
-      </Container>
+      {heroes.length > 0 && (
+        <Container {...resultsProps}>
+          {heroes.map((hero) => (
+            <HeroItem key={hero.id} hero={hero} />
+          ))}
+        </Container>
+      )}
     </Container>
   );
 };

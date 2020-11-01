@@ -4,7 +4,11 @@ export default [
 		path: "/",
 	},
 	{
-		name: "Compare",
+		name: "Compare heroes",
 		path: "/#compare",
+	},
+	{
+		name: "SuperHero API",
+		path: "https://www.superheroapi.com/",
 	},
 ];

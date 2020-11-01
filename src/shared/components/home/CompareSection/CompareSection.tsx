@@ -15,6 +15,7 @@ const CompareSection = () => {
       color="white"
     >
       <h1>Compare heroes</h1>
+      <p>From #1 to #732</p>
       <CompareHeroes />
     </Container>
   );

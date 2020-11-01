@@ -17,7 +17,7 @@ const Powerstats = ({ hero }) => {
         <b>{hero.name}</b>
       </p>
       {powerstats.map((p) => (
-        <p>
+        <p key={p}>
           <small style={{ textTransform: "capitalize" }}>{p}: </small>{" "}
           <b>{hero[p] != "null" ? hero[p] : "-"}</b>
         </p>

@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import { colors } from "../../../../browser/styles/colors";
 import { Container } from "../../../styled/Container";
+import SearchFilters from "../../searchFilters/SearchFilters";
 import SearchForm from "../../searchHeroes/SearchForm";
 
 const SearchSection: FC = () => {
@@ -14,7 +15,7 @@ const SearchSection: FC = () => {
       bgColor={colors.primary}
       color="#fff"
     >
-      <SearchForm search={""} flexDir='column' />
+      <SearchForm search={""} flexDir="column"/>
     </Container>
   );
 };

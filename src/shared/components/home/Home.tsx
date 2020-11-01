@@ -14,38 +14,16 @@ const Home: FC<Props> = () => {
       <Container
         height="100vh"
         display="flex"
-        justifyContent="center"
-        alignItems="center"
-        bgColor={colors.terciary}
-      >
-        <Container
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          bgColor={"#000"}
-          color="#fff"
-        >
-          Marvel Heroes
-        </Container>
-        <Container
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          bgColor={"#000"}
-          color="#fff"
-        >
-          DC Heroes
-        </Container>
-      </Container>
-      <Container
-        height="100vh"
-        display="flex"
+        flexDir="column"
         justifyContent="center"
         alignItems="center"
         bgColor={colors.primary}
         color="#fff"
       >
-        Thanks to SuperHero API
+        Heroes data thanks to SuperHero API
+        <a style={{ color: colors.fourth }} href="https://superheroapi.com/">
+          https://superheroapi.com/
+        </a>
       </Container>
       <Container
         height="10vh"

@@ -37,18 +37,20 @@ const NavBar: React.FC<RouteComponentProps<any> & Props> = ({
         <Nav>
           <Logo onClick={() => handleOnClick("/", false)}>Heroes</Logo>
           <Menu className={isOpen ? "isActive" : ""}>
-            {items.map((item) => (
-              <MenuItem
-                key={item.name}
-                onClick={() => handleOnClick(item.path, false)}
-              >
-                {item.name !== "Home" ? (
+            {items.map((item) =>
+              item.name !== "Home" ? (
+                <MenuItem
+                  key={item.name}
+                  onClick={() => setIsOpen(false)}
+                >
                   <Item href={item.path}>{item.name}</Item>
-                ) : (
-                  item.name
-                )}
-              </MenuItem>
-            ))}
+                </MenuItem>
+              ) : (
+                <MenuItem key={item.name} onClick={() => handleOnClick(item.path, false)}>
+                  {item.name}
+                </MenuItem>
+              )
+            )}
             <BtnsWrapper>
               <SearchIcon onClick={() => handleOnClick("", true)} />
             </BtnsWrapper>

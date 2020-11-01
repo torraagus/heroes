@@ -30,7 +30,10 @@ export const searchHeroesFailure = (error: any) => {
   };
 };
 
-export const searchHeroes = (query: string) => {
+export const searchHeroes = (
+  query: string,
+  filters?: { by: string; value: string }[]
+) => {
   return (dispatch: Dispatch) => {
     dispatch(searchHeroesRequest());
     dispatch(startLoadingBar());
@@ -40,10 +43,26 @@ export const searchHeroes = (query: string) => {
       .then((data) => {
         dispatch(fullLoadingBar());
         if (data.response === "error") {
-          dispatch(searchHeroesFailure(data.error))
+          dispatch(searchHeroesFailure(data.error));
         } else {
-          // const res = data.results.filter(hero => hero.biography.publisher === 'Marvel');
-          dispatch(searchHeroesSuccess(data.results));
+          if (filters) {
+            const idxPublisher = filters.findIndex((f) => f.by === "publisher");
+            const idxGender = filters.findIndex((f) => f.by === "gender");
+            const idxAlignment = filters.findIndex((f) => f.by === "alignment");
+            const res = data.results.filter((hero) => {
+              return (
+                hero.biography[filters[idxPublisher]?.by] ===
+                  filters[idxPublisher]?.value &&
+                hero.appearance[filters[idxGender]?.by] ===
+                  filters[idxGender]?.value &&
+                hero.biography[filters[idxAlignment]?.by] ===
+                  filters[idxAlignment]?.value
+              );
+            });
+            dispatch(searchHeroesSuccess(res));
+          } else {
+            dispatch(searchHeroesSuccess(data.results));
+          }
         }
       })
       .catch((err) => {

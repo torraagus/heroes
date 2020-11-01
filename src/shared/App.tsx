@@ -1,16 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import routes from "./routes";
 import NoMatch from "./components/noMatch/NoMatch";
 import LoadingBar from "react-top-loading-bar";
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import NavBar from "./components/navBar/NavBar";
+import ScrollArrow from "./components/scrollArrow/ScrollArrow";
+import useWindowSize from "./hooks/useWindow";
+import SearchBar from "./components/searchBar/SearchBar";
 
 type Props = {
   loader: { color: string; progress: number };
 };
 
 const App: React.FC<Props> = ({ loader }): JSX.Element => {
+  const [searchBarActive, setSearchBarActive] = useState<boolean>(false);
+  const { width } = useWindowSize();
+
   return (
     <>
       <LoadingBar color={loader.color} progress={loader.progress} />
@@ -22,8 +28,14 @@ const App: React.FC<Props> = ({ loader }): JSX.Element => {
             exact={exact}
             render={(props) => (
               <>
-                {!noNavBar && (
-                  <NavBar />
+                {searchBarActive && (
+                  <SearchBar
+                    width={width}
+                    onClose={() => setSearchBarActive(false)}
+                  />
+                )}
+                {!searchBarActive && (
+                  <NavBar onSearch={() => setSearchBarActive(true)} />
                 )}
                 <C {...props} {...rest} />
               </>
@@ -32,6 +44,7 @@ const App: React.FC<Props> = ({ loader }): JSX.Element => {
         ))}
         <Route render={(props) => <NoMatch {...props} />} />
       </Switch>
+      <ScrollArrow />
     </>
   );
 };

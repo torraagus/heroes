@@ -9,6 +9,8 @@ import {
 } from "../../redux/heroeDetails/heroeDetailsAction";
 import { props } from "./heroDetails.styles";
 import { Container } from "../../styled/Container";
+import Loader from "../loader/Loader";
+import Error from "./Error/Error";
 
 const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
   useEffect(() => {
@@ -18,7 +20,11 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
     };
   }, []);
 
-  return (
+  return hero.loading ? (
+    <Loader />
+  ) : hero.error != "" ? (
+    <Error error={hero.error} />
+  ) : (
     <Container {...props}>
       <Container
         width="90vw"
@@ -27,14 +33,17 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
         alignItems="center"
         padding="2rem 0"
       >
-        <img style={{ width: 200, borderRadius: 15 }} src={hero.image?.url} />
-        {hero.id && (
+        <img
+          style={{ width: 200, borderRadius: 15 }}
+          src={hero.details.image?.url}
+        />
+        {hero.details.id && (
           <h1 style={{ margin: "1rem 0" }}>
-            {hero.name} (#{hero.id})
+            {hero.details.name} (#{hero.details.id})
           </h1>
         )}
         <div style={{ width: "90vw", display: "flex" }}>
-          {hero.biography && (
+          {hero.details.biography && (
             <div
               style={{
                 width: "70vw",
@@ -52,9 +61,9 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
                     color: `${colors.primary}`,
                   }}
                 >
-                  {hero.biography["full-name"] != ""
-                    ? hero.biography["full-name"]
-                    : hero.name}
+                  {hero.details.biography["full-name"] != ""
+                    ? hero.details.biography["full-name"]
+                    : hero.details.name}
                 </p>
               </div>
               <div style={{ margin: ".25rem 0" }}>
@@ -66,13 +75,13 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
                     color: `${colors.primary}`,
                   }}
                 >
-                  {hero.biography["alter-egos"]}
+                  {hero.details.biography["alter-egos"]}
                 </p>
               </div>
               <div style={{ margin: ".25rem 0" }}>
                 <p>Aliases </p>
                 <div style={{ display: "flex", flexWrap: "wrap" }}>
-                  {hero.biography.aliases.map((a, i) => (
+                  {hero.details.biography.aliases.map((a, i) => (
                     <p
                       key={i}
                       style={{
@@ -97,7 +106,7 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
                     color: `${colors.primary}`,
                   }}
                 >
-                  {hero.biography["place-of-birth"]}
+                  {hero.details.biography["place-of-birth"]}
                 </p>
               </div>
               <div style={{ margin: ".25rem 0" }}>
@@ -109,7 +118,7 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
                     color: `${colors.primary}`,
                   }}
                 >
-                  {hero.biography["first-appearance"]}
+                  {hero.details.biography["first-appearance"]}
                 </p>
               </div>
               <div style={{ margin: ".25rem 0" }}>
@@ -121,7 +130,7 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
                     color: `${colors.primary}`,
                   }}
                 >
-                  {hero.biography.publisher}
+                  {hero.details.biography.publisher}
                 </p>
               </div>
               <div style={{ margin: ".25rem 0" }}>
@@ -134,7 +143,7 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
                     color: `${colors.primary}`,
                   }}
                 >
-                  {hero.biography.alignment}
+                  {hero.details.biography.alignment}
                 </p>
               </div>
               <h2 style={{ padding: "1rem 0 .5rem 0" }}>Work</h2>
@@ -147,7 +156,7 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
                     color: `${colors.primary}`,
                   }}
                 >
-                  {hero.work.occupation}
+                  {hero.details.work.occupation}
                 </p>
               </div>
               <div style={{ margin: ".25rem 0" }}>
@@ -159,7 +168,7 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
                     color: `${colors.primary}`,
                   }}
                 >
-                  {hero.work.base}
+                  {hero.details.work.base}
                 </p>
               </div>
               <h2 style={{ padding: "1rem 0 .5rem 0" }}>Connections</h2>
@@ -172,7 +181,7 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
                     color: `${colors.primary}`,
                   }}
                 >
-                  {hero.connections["group-affiliation"]}
+                  {hero.details.connections["group-affiliation"]}
                 </p>
               </div>
               <div style={{ margin: ".25rem 0" }}>
@@ -184,12 +193,12 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
                     color: `${colors.primary}`,
                   }}
                 >
-                  {hero.connections.relatives}
+                  {hero.details.connections.relatives}
                 </p>
               </div>
             </div>
           )}
-          {hero.powerstats && (
+          {hero.details.powerstats && (
             <div
               style={{
                 width: "20vw",
@@ -210,7 +219,7 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
               >
                 <p style={{ color: "white" }}>Combat</p>
                 <p style={{ color: colors.fourth, fontWeight: "bold" }}>
-                  {hero.powerstats.combat}
+                  {hero.details.powerstats.combat}
                 </p>
               </div>
               <div
@@ -225,7 +234,7 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
               >
                 <p style={{ color: "white" }}>Intelligence</p>
                 <p style={{ color: colors.fourth, fontWeight: "bold" }}>
-                  {hero.powerstats.intelligence}
+                  {hero.details.powerstats.intelligence}
                 </p>
               </div>
               <div
@@ -240,7 +249,7 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
               >
                 <p style={{ color: "white" }}>Strength</p>
                 <p style={{ color: colors.fourth, fontWeight: "bold" }}>
-                  {hero.powerstats.strength}
+                  {hero.details.powerstats.strength}
                 </p>
               </div>
               <div
@@ -255,7 +264,7 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
               >
                 <p style={{ color: "white" }}>Durability</p>
                 <p style={{ color: colors.fourth, fontWeight: "bold" }}>
-                  {hero.powerstats.durability}
+                  {hero.details.powerstats.durability}
                 </p>
               </div>
               <div
@@ -270,7 +279,7 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
               >
                 <p style={{ color: "white" }}>Power</p>
                 <p style={{ color: colors.fourth, fontWeight: "bold" }}>
-                  {hero.powerstats.power}
+                  {hero.details.powerstats.power}
                 </p>
               </div>
               <div
@@ -285,7 +294,7 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
               >
                 <p style={{ color: "white" }}>Speed</p>
                 <p style={{ color: colors.fourth, fontWeight: "bold" }}>
-                  {hero.powerstats.speed}
+                  {hero.details.powerstats.speed}
                 </p>
               </div>
               <h2 style={{ padding: "1rem 0 .5rem 0" }}>Appearance</h2>
@@ -301,7 +310,7 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
               >
                 <p>Gender</p>
                 <p style={{ color: colors.secondary, fontWeight: "bold" }}>
-                  {hero.appearance.gender}
+                  {hero.details.appearance.gender}
                 </p>
               </div>
               <div
@@ -316,7 +325,9 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
               >
                 <p>Race</p>
                 <p style={{ color: colors.secondary, fontWeight: "bold" }}>
-                  {hero.appearance.race != "null" ? hero.appearance.race : "-"}
+                  {hero.details.appearance.race != "null"
+                    ? hero.details.appearance.race
+                    : "-"}
                 </p>
               </div>
               <div
@@ -337,7 +348,8 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
                     textAlign: "end",
                   }}
                 >
-                  {hero.appearance.height[0]} | {hero.appearance.height[1]}
+                  {hero.details.appearance.height[0]} |{" "}
+                  {hero.details.appearance.height[1]}
                 </p>
               </div>
               <div
@@ -358,7 +370,8 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
                     textAlign: "end",
                   }}
                 >
-                  {hero.appearance.weight[0]} | {hero.appearance.weight[1]}
+                  {hero.details.appearance.weight[0]} |{" "}
+                  {hero.details.appearance.weight[1]}
                 </p>
               </div>
               <div
@@ -373,7 +386,7 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
               >
                 <p>Eye color</p>
                 <p style={{ color: colors.secondary, fontWeight: "bold" }}>
-                  {hero.appearance["eye-color"]}
+                  {hero.details.appearance["eye-color"]}
                 </p>
               </div>
               <div
@@ -388,17 +401,12 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
               >
                 <p>Hair color</p>
                 <p style={{ color: colors.secondary, fontWeight: "bold" }}>
-                  {hero.appearance["hair-color"]}
+                  {hero.details.appearance["hair-color"]}
                 </p>
               </div>
             </div>
           )}
         </div>
-        {/* <p>{JSON.stringify(hero.powerstats)}</p>
-      <p>{JSON.stringify(hero.biography)}</p>
-      <p>{JSON.stringify(hero.appearance)}</p>
-      <p>{JSON.stringify(hero.work)}</p>
-      <p>{JSON.stringify(hero.connections)}</p> */}
       </Container>
     </Container>
   );
@@ -406,7 +414,7 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
 
 const mapStateToProps = (state) => {
   return {
-    hero: state.heroeDetails.details,
+    hero: state.heroeDetails,
   };
 };
 
