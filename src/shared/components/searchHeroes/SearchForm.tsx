@@ -19,7 +19,7 @@ const SearchForm: FC<Props & RouteComponentProps> = ({
     e.preventDefault();
     history.push({
       pathname: "search",
-      search: query
+      search: query,
     });
   };
 

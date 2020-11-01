@@ -6,6 +6,7 @@ import {
 
 const initialState = {
   loading: false,
+  totalPages: 0,
   heroes: [],
   error: "",
 };
@@ -20,17 +21,19 @@ const reducer = (state = initialState, action) => {
     case SEARCH_HEROES_SUCCESS:
       return {
         loading: false,
-        heroes: action.payload,
+        heroes: action.payload.heroes,
+        totalPages: action.payload.pagesTotal,
         error: "",
       };
     case SEARCH_HEROES_FAILURE:
       return {
         loading: false,
         heroes: [],
+        totalPages: 0,
         error: action.payload,
       };
     case "CLEAR_STATE":
-      return { heroes: [], error: "", loading: false };
+      return { totalPages: 0, heroes: [], error: "", loading: false };
 
     default:
       return state;

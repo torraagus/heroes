@@ -7,26 +7,27 @@ import { Container } from "../../styled/Container";
 import { isEmpty } from "../../utils";
 import HeroList from "../heroList/HeroList";
 import Loader from "../loader/Loader";
+import Pagination from "../pagination/Pagination";
 import SearchFilters from "../searchFilters/SearchFilters";
 import SearchForm from "./SearchForm";
-import { HomeBtn, Error, props } from "./searchHeroes.styles";
+import { Error, props } from "./searchHeroes.styles";
 
 type Props = {
   heroesData: {
+    totalPages: number;
     heroes: [{ id: string; name: string }];
     loading: boolean;
     error: string;
   };
   searchHeroes(
     query: string,
+    page: number,
     filters: { by: string; value: string }[]
   ): (dispatch: Dispatch<AnyAction>) => void;
   clearState(): (dispatch: Dispatch<AnyAction>) => void;
 };
 
-type StateType = {
-  filters: { by: string; value: string }[];
-};
+type StateType = { page: number };
 
 const HeroesContainer: FC<Props & RouteComponentProps<{}, {}, StateType>> = ({
   heroesData,
@@ -35,14 +36,20 @@ const HeroesContainer: FC<Props & RouteComponentProps<{}, {}, StateType>> = ({
   location,
 }) => {
   const [filters, setFilters] = useState<{ by: string; value: string }[]>([]);
+  const [page, setPage] = useState(1);
   const query = location.search.substr(1);
 
   useEffect(() => {
-    searchHeroes(query, filters);
+    setPage(1);
+    searchHeroes(query, 1, filters);
     return () => {
       clearState();
     };
-  }, [query, filters]);
+  }, [query]);
+  
+  useEffect(() => {
+    searchHeroes(query, page, filters);
+  }, [filters, page]);
 
   if (heroesData.loading) {
     return <Loader />;
@@ -50,14 +57,23 @@ const HeroesContainer: FC<Props & RouteComponentProps<{}, {}, StateType>> = ({
     return (
       <Container {...props}>
         <SearchForm search={query} flexDir="row" />
-
         {heroesData.heroes.length > 0 ? (
           <>
             <SearchFilters
               filters={filters}
               onFilterSelected={(f) => setFilters([...f])}
             />
+            <Pagination
+              page={page}
+              onPageChange={(page) => setPage(page)}
+              totalPages={heroesData.totalPages}
+            />
             <HeroList heroes={heroesData.heroes} />
+            <Pagination
+              page={page}
+              onPageChange={(page) => setPage(page)}
+              totalPages={heroesData.totalPages}
+            />
           </>
         ) : (
           <Error>{heroesData.error}</Error>
@@ -89,8 +105,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    searchHeroes: (query: string, filters: { by: string; value: string }[]) =>
-      dispatch(searchHeroes(query, filters)),
+    searchHeroes: (
+      query: string,
+      page: number,
+      filters: { by: string; value: string }[]
+    ) => dispatch(searchHeroes(query, page, filters)),
     clearState: () => dispatch(clearState()),
   };
 };
