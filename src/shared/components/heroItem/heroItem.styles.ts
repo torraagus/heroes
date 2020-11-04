@@ -2,6 +2,13 @@ import styled from "styled-components";
 import { BiLoaderAlt } from "react-icons/bi";
 import { colors } from "../../../browser/styles/colors";
 
+export const Id = styled.h4`
+	padding: 0.5rem 0 0 0;
+`;
+export const Name = styled.small`
+	text-align: center;
+`;
+
 export const LoaderIcon = styled(BiLoaderAlt)`
 	font-size: 24px;
 	color: ${colors.primary};
@@ -17,9 +24,9 @@ export const LoaderIcon = styled(BiLoaderAlt)`
 	}
 `;
 
-export const ContainerProps = {
+export const containerProps = {
 	width: "auto",
-	height: "auto",
+	minHeight: "auto",
 	flexDir: "column",
 	alignItems: "center",
 	justifyContent: "center",

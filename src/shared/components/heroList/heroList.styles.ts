@@ -1,20 +1,21 @@
-export const wrapperProps = {
-	width: "50vw",
-	width1366: "60vw",
-	width768: "90vw",
+// export const wrapperProps = {
+// 	width: "50vw",
+// 	width1366: "55vw",
+// 	width768: "90vw",
 
-	height: "auto",
-	display: "flex",
-	flexDir: "column",
-};
+// 	minHeight: "auto",
+// 	display: "flex",
+// 	flexDir: "column",
+// };
 
 export const resultsProps = {
 	width: "50vw",
-	width1366: "60vw",
+	width1366: "52vw",
 	width768: "90vw",
 
-	height: "auto",
+	minHeight: "auto",
 	display: "flex",
 	flexWrap: "wrap",
 	justifyContent: "center",
+	justifyContent768: "flex-start",
 };

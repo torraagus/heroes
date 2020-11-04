@@ -1,19 +1,12 @@
-import React, { FC, useState } from "react";
-import { colors } from "../../../../browser/styles/colors";
+import React, { FC } from "react";
 import { Container } from "../../../styled/Container";
-import SearchFilters from "../../searchFilters/SearchFilters";
 import SearchForm from "../../searchHeroes/SearchForm";
+import { Title } from "../home.styles";
+import { containerProps } from "./searchSection.styles";
 
 const SearchSection: FC = () => {
 	return (
-		<Container
-			display="flex"
-			flexDir="column"
-			justifyContent="center"
-			alignItems="center"
-			bgColor={colors.primary}
-			color="#fff"
-		>
+		<Container {...containerProps}>
 			<SearchForm search={""} flexDir="column" minWidth="300px" />
 		</Container>
 	);

@@ -14,3 +14,7 @@ export function isEmpty(obj: {} | Array<any>) {
 export function getRandomInt(min: number, max: number) {
 	return Math.floor(Math.random() * (max - min)) + min;
 }
+
+export function capitalize(str: string) {
+	return str.charAt(0).toUpperCase() + str.slice(1);
+}

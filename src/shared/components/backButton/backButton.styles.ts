@@ -15,6 +15,6 @@ export const props = {
 	width: "70vw",
 	width1366: "90vw",
 
-	height: "auto",
+	minHeight: "auto",
 	margin: "0 0 1rem 0",
 };

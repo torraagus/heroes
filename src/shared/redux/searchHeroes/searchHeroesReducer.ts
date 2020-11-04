@@ -47,7 +47,7 @@ const reducer = (state = initialState, action) => {
 				error: "",
 			};
 		case "CLEAR_STATE":
-			return { pagesTotal: 0, heroes: [], error: "", loading: true };
+			return { pagesTotal: 0, heroes: [], error: "", loading: { search: true, more: false } };
 
 		default:
 			return state;

@@ -1,8 +1,9 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import { colors } from "../../../browser/styles/colors";
 import { Container } from "../../styled/Container";
 import CompareSection from "./CompareSection/CompareSection";
 import SearchSection from "./searchSection/SearchSection";
+import { apiContainer, footerContainer } from "./home.styles";
 
 interface Props {}
 
@@ -11,28 +12,13 @@ const Home: FC<Props> = () => {
 		<>
 			<SearchSection />
 			<CompareSection />
-			<Container
-				height="100vh"
-				display="flex"
-				flexDir="column"
-				justifyContent="center"
-				alignItems="center"
-				bgColor={colors.primary}
-				color="#fff"
-			>
+			<Container {...apiContainer}>
 				Heroes data thanks to SuperHero API
 				<a style={{ color: colors.fourth }} href="https://superheroapi.com/">
 					https://superheroapi.com/
 				</a>
 			</Container>
-			<Container
-				height="8vh"
-				display="flex"
-				justifyContent="center"
-				alignItems="center"
-				bgColor={"#444"}
-				color={"#bbb"}
-			>
+			<Container {...footerContainer}>
 				<small>Developed by Agustin Torra</small>
 			</Container>
 		</>

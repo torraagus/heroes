@@ -7,7 +7,8 @@ import cors from "cors";
 import App from "../shared/App";
 import React from "react";
 import { markup } from "./markup";
-import store from '../shared/redux/store'
+import store from "../shared/redux/store";
+import { createGlobalStyle, ServerStyleSheet } from "styled-components";
 
 const app: any = express();
 
@@ -16,13 +17,26 @@ app.use(express.static("public"));
 app.use(handleRender);
 
 async function handleRender(req, res) {
+	// const GlobalStyle = createGlobalStyle`
+	// 	body {
+	// 		margin: 0;
+	// 		padding: 0;
+	// 		background: teal;
+	// 		font-family: Open-Sans, Helvetica, Sans-Serif;
+	// 	}
+	// `;
+
+	const sheet = new ServerStyleSheet();
 
 	const html = renderToString(
-		<Provider store={store}>
-			<Router location={req.url}>
-				<App />
-			</Router>
-		</Provider>
+		sheet.collectStyles(
+			<Provider store={store}>
+				<Router location={req.url}>
+					{/* <GlobalStyle /> */}
+					<App />
+				</Router>
+			</Provider>
+		)
 	);
 
 	const initialState = store.getState();

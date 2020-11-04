@@ -69,7 +69,7 @@ export const BlackScreen = styled.div<BlackScreenProps>`
 
 export const Logo = styled.div`
 	color: ${colors.fourth};
-	font-weight: 900;
+	font-weight: 700;
 	letter-spacing: 3px;
 	font-size: 16px;
 	text-transform: uppercase;
@@ -79,7 +79,7 @@ export const Logo = styled.div`
 
 	:hover {
 		cursor: pointer;
-		background-color: ${colors.secondary};
+		opacity: 75%;
 	}
 `;
 
@@ -105,7 +105,7 @@ export const Menu = styled.ul`
 		position: absolute;
 		top: 60px;
 		right: 0;
-		height: 90vh;
+		height: calc(100vh - 60px);
 		width: 60%;
 		background-color: white;
 		transform: translateX(100%);
@@ -117,7 +117,7 @@ export const Menu = styled.ul`
 `;
 
 export const MenuItem = styled.li`
-	color: ${colors.secondary};
+	color: ${colors.primary};
 	padding: 0.5rem;
 	:hover {
 		border-bottom: 1px solid ${colors.primary};
@@ -145,7 +145,7 @@ export const Item = styled.a`
 	width: 100%;
 	:hover {
 		cursor: pointer;
-		color: ${colors.primary};
+		/* color: ${colors.primary}; */
 	}
 `;
 

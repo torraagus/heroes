@@ -14,6 +14,6 @@ export const Name = styled.p`
 	text-transform: capitalize;
 `;
 export const Value = styled.p`
-	color: ${colors.fourth};
+	color: ${colors.terciary};
 	font-weight: bold;
 `;

@@ -6,7 +6,7 @@ export const HeroName = styled.p`
 `;
 
 export const wrapperProps = {
-	height: "auto",
+	minHeight: "auto",
 	display: "flex",
 	bgColor: "inherit",
 	justifyContent: "center",
@@ -16,7 +16,7 @@ export const wrapperProps = {
 };
 
 export const heroProps = {
-	height: "auto",
+	minHeight: "auto",
 	width: "auto",
 	padding: "1rem",
 	bgColor: "white",

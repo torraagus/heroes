@@ -7,6 +7,8 @@ import { clearState, searchHeroes, loadMore } from "../../redux";
 import { Container } from "../../styled/Container";
 import { isEmpty } from "../../utils";
 import BackButton from "../backButton/BackButton";
+import NoHeroError from "../heroDetails/noHeroeError/NoHeroError";
+import { LoaderIcon } from "../heroItem/heroItem.styles";
 import HeroList from "../heroList/HeroList";
 import Loader from "../loader/Loader";
 import Pagination from "../pagination/Pagination";
@@ -18,6 +20,7 @@ import {
 	wrapperProps,
 	leftContainerProps,
 	rightContainerProps,
+	loaderContainerProps,
 } from "./searchHeroes.styles";
 
 type Props = {
@@ -82,7 +85,9 @@ const HeroesContainer: FC<Props & RouteComponentProps> = ({
 							<>
 								<HeroList heroes={heroesData.heroes} />
 								{heroesData.loading.more ? (
-									<p style={{ height: 40, lineHeight: "40px", padding: "1rem 0" }}>Loading...</p>
+									<Container {...loaderContainerProps}>
+										<LoaderIcon />
+									</Container>
 								) : (
 									<Pagination page={page} onPageChange={(page) => setPage(page)} pagesTotal={heroesData.pagesTotal} />
 								)}
@@ -91,16 +96,12 @@ const HeroesContainer: FC<Props & RouteComponentProps> = ({
 						{heroesData.error === "" && isEmpty(heroesData.heroes) && (
 							<>
 								<HeroList heroes={[]} />
-								<h3>No heroes found</h3>
-								<i style={{ textAlign: "center" }}>Change the filters or make another search.</i>
+								<NoHeroError title="No heroes found" desc="Change the filters or make another search." />
 							</>
 						)}
 						{heroesData.error !== "" && (
 							<>
-								<h3>Error</h3>
-								<i style={{ textAlign: "center" }}>
-									No heroes match <b style={{ color: colors.fourth }}>{query}</b>. Please change the hero name.
-								</i>
+								<NoHeroError title="Bad query" desc={`No heroes match ${query}. Please make another search.`} />
 							</>
 						)}
 					</Container>

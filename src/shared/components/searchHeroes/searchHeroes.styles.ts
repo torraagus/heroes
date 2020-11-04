@@ -28,7 +28,7 @@ export const Error = styled.i`
 `;
 
 export const mainWrapperProps = {
-	height: "auto",
+	minHeight: "auto",
 	display: "flex",
 	flexDir: "column",
 	justifyContent: "center",
@@ -42,7 +42,7 @@ export const wrapperProps = {
 	width: "70vw",
 	width1366: "90vw",
 
-	height: "auto",
+	minHeight: "auto",
 	display: "flex",
 
 	flexDir768: "column",
@@ -50,26 +50,34 @@ export const wrapperProps = {
 
 export const leftContainerProps = {
 	width: "20vw",
-	width1366: "30vw",
+	width1366: "38vw",
 	width768: "90vw",
 
-	height: "auto",
+	height: "fit-content",
 	display: "flex",
 	flexDir: "column",
+	borderRadius: "15px",
+	margin: "0 1rem 0 0",
+	padding: "1rem 1rem 3rem 1rem",
+	padding768: "0",
+
+	shadow: true,
+	shadow768: false,
 };
 
 export const rightContainerProps = {
 	width: "50vw",
-	width1366: "60vw",
+	width1366: "52vw",
 	width768: "90vw",
 
 	padding768: "2rem 0",
 
-	height: "auto",
+	minHeight: "auto",
 	display: "flex",
 	flexDir: "column",
 	justifyContent: "center",
 	alignItems: "center",
+	alignItems768: "flex-start",
 };
 
 export const searchFormProps = {
@@ -78,4 +86,13 @@ export const searchFormProps = {
 	margin: "0 1rem 1rem 0",
 	padding: "0 0 1rem 0",
 	minWidth: "auto",
+};
+
+export const loaderContainerProps = {
+	minHeight: "40px",
+	width: "100%",
+	display: "flex",
+	justifyContent: "center",
+	alignItems: "center",
+	margin: "1rem 0",
 };

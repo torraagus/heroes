@@ -4,13 +4,13 @@ export const props = {
 	display: "flex",
 	justifyContent: "center",
 	alignItems: "center",
-	height: "auto",
+	minHeight: "auto",
 	width: "50vw",
 };
 
 export const btnProps = {
-	width: "auto",
 	height: "40px",
+	width: "auto",
 	bgColor: "#eee",
 	color: colors.primary,
 	borderRadius: "10px",

@@ -1,5 +1,6 @@
 import React, { FC, useRef, useState, useEffect } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
+import { Title } from "../home/home.styles";
 import { Form, Submit, Input } from "./searchForm.styles";
 
 type Props = {
@@ -37,7 +38,7 @@ const SearchForm: FC<Props & RouteComponentProps> = ({
 
 	return (
 		<>
-			<h1>Search heroes</h1>
+			<Title>Search heroes</Title>
 			<Form
 				display="flex"
 				flexDir={flexDir}

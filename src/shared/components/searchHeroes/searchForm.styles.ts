@@ -68,4 +68,8 @@ export const Input = styled.input<InputProps>`
 	:focus {
 		border: 1px solid ${colors.secondary};
 	}
+
+	@media (max-width: 384px) {
+		min-width: 225px;
+	}
 `;
