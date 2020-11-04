@@ -1,24 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container } from "../../styled/Container";
-import { Button as PrevBtn, Button as NextBtn } from "../../styled/Button";
+import { Button as LoadMoreBtn } from "../../styled/Button";
 import { props, btnProps } from "./pagination.styles";
-import { colors } from "../../../browser/styles/colors";
 
-const Pagination = ({ page, onPageChange, totalPages }) => {
-  return (
-    <Container {...props}>
-      {page > 1 && (
-        <PrevBtn {...btnProps} onClick={() => onPageChange(page - 1)}>
-          Previous
-        </PrevBtn>
-      )}
-      {totalPages > page && (
-        <NextBtn {...btnProps} onClick={() => onPageChange(page + 1)}>
-          Next
-        </NextBtn>
-      )}
-    </Container>
-  );
+const Pagination = ({ page, onPageChange, pagesTotal }) => {
+	return (
+		<Container {...props}>
+			{pagesTotal > page && (
+				<LoadMoreBtn {...btnProps} onClick={() => onPageChange(page + 1)}>
+					Load more
+				</LoadMoreBtn>
+			)}
+		</Container>
+	);
 };
 
 export default Pagination;

@@ -5,19 +5,18 @@ import SearchFilters from "../../searchFilters/SearchFilters";
 import SearchForm from "../../searchHeroes/SearchForm";
 
 const SearchSection: FC = () => {
-
-  return (
-    <Container
-      display="flex"
-      flexDir="column"
-      justifyContent="center"
-      alignItems="center"
-      bgColor={colors.primary}
-      color="#fff"
-    >
-      <SearchForm search={""} flexDir="column"/>
-    </Container>
-  );
+	return (
+		<Container
+			display="flex"
+			flexDir="column"
+			justifyContent="center"
+			alignItems="center"
+			bgColor={colors.primary}
+			color="#fff"
+		>
+			<SearchForm search={""} flexDir="column" minWidth="300px" />
+		</Container>
+	);
 };
 
 export default SearchSection;

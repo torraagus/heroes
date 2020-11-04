@@ -43,7 +43,7 @@ const SearchBar: FC<RouteComponentProps<any> & Props> = ({ onClose, history, wid
 						<SearchInput
 							ref={searchInput}
 							type="text"
-							placeholder={"Search for a movie..."}
+							placeholder={"Search a heroe..."}
 							value={query}
 							onChange={(e) => setQuery(e.target.value)}
 						/>
