@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-type ContainerProps = {
+export type ContainerProps = {
 	width?: string;
 	width768?: string;
 	width1024?: string;
@@ -32,6 +32,11 @@ type ContainerProps = {
 	borderTop?: string;
 	margin?: string;
 	shadow?: boolean;
+
+	animation?: string;
+	frames?: string;
+	animationName?: string;
+	animationDelay?: string;
 };
 
 export const Container = styled.div<ContainerProps>`
@@ -83,4 +88,13 @@ export const Container = styled.div<ContainerProps>`
 		box-shadow: 5px 5px 5px 0px #651a1b27
 		`};
 	}
+
+	animation: ${({ animation }) => animation && animation};
+	animation-delay: ${({ animationDelay }) => animationDelay && animationDelay};
+
+	${({ animation, animationName, frames }) =>
+		animation &&
+		`@keyframes ${animationName} {
+			${frames}
+		}`};
 `;

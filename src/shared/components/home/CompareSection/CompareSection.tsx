@@ -1,10 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 import { Container } from "../../../styled/Container";
 import CompareHeroes from "../../compareHeroes/CompareHeroes";
 import { Title } from "../home.styles";
 import { containerProps, Subtitle } from "./compareSection.styles";
 
-const CompareSection = () => {
+const CompareSection: FC = () => {
 	return (
 		<Container id="compare" {...containerProps}>
 			<Title>Compare heroes</Title>

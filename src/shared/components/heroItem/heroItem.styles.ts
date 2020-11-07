@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { BiLoaderAlt } from "react-icons/bi";
 import { colors } from "../../../browser/styles/colors";
+import { ContainerProps } from "../../styled/Container";
 
 export const Id = styled.h4`
 	padding: 0.5rem 0 0 0;
@@ -12,7 +13,7 @@ export const Name = styled.small`
 export const LoaderIcon = styled(BiLoaderAlt)`
 	font-size: 24px;
 	color: ${colors.primary};
-	animation: rotate 1s infinite linear;
+	animation: rotate 0.5s infinite linear;
 
 	@keyframes rotate {
 		0% {
@@ -24,7 +25,7 @@ export const LoaderIcon = styled(BiLoaderAlt)`
 	}
 `;
 
-export const containerProps = {
+export const containerProps: ContainerProps = {
 	width: "auto",
 	minHeight: "auto",
 	flexDir: "column",
@@ -33,4 +34,17 @@ export const containerProps = {
 	display: "flex",
 	padding: ".5rem .25rem",
 	hover: true,
+	animation: "scale .5s ease-out",
+	animationName: "scale",
+	frames: `
+		0% {
+			transform: scale(0);
+		}
+		75% {
+			transform: scale(1.05);
+		}
+		100% {
+			transform: scale(1);
+		}
+	`,
 };

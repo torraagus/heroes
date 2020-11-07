@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { Container } from "../../../styled/Container";
 import SearchForm from "../../searchHeroes/SearchForm";
-import { Title } from "../home.styles";
 import { containerProps } from "./searchSection.styles";
 
 const SearchSection: FC = () => {

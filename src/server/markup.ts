@@ -1,6 +1,6 @@
 import serialize from "serialize-javascript";
 
-export const markup = (html, preloadedState) => {
+export const markup = (html: string, preloadedState) => {
 	const { title, styles, fonts } = {
 		title: "Heroes",
 		styles: "/styles.css",

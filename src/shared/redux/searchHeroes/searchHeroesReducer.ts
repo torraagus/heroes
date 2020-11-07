@@ -1,3 +1,4 @@
+import { HeroDetailsT } from "../heroeDetails/heroeDetailsReducer";
 import {
 	LOAD_MORE_HEROES_REQUEST,
 	LOAD_MORE_HEROES_SUCCESS,
@@ -6,30 +7,42 @@ import {
 	SEARCH_HEROES_SUCCESS,
 } from "./searchHeroesTypes";
 
-const initialState = {
-	loading: { search: true, more: false },
+type Action = {
+	type: string;
+	payload: { heroes: HeroDetailsT[]; pagesTotal: number };
+};
+
+export type SearchHeroesState = {
+	loading: { search: boolean; fetchMore: boolean };
+	pagesTotal: number;
+	heroes: HeroDetailsT[];
+	error: string;
+};
+
+const initialState: SearchHeroesState = {
+	loading: { search: true, fetchMore: false },
 	pagesTotal: 0,
 	heroes: [],
 	error: "",
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action: Action) => {
 	switch (action.type) {
 		case SEARCH_HEROES_REQUEST:
 			return {
 				...state,
-				loading: { search: true, more: false },
+				loading: { search: true, fetchMore: false },
 			};
 		case SEARCH_HEROES_SUCCESS:
 			return {
-				loading: { search: false, more: false },
+				loading: { search: false, fetchMore: false },
 				heroes: action.payload.heroes,
 				pagesTotal: action.payload.pagesTotal,
 				error: "",
 			};
 		case SEARCH_HEROES_FAILURE:
 			return {
-				loading: { search: false, more: false },
+				loading: { search: false, fetchMore: false },
 				heroes: [],
 				pagesTotal: 0,
 				error: action.payload,
@@ -37,17 +50,17 @@ const reducer = (state = initialState, action) => {
 		case LOAD_MORE_HEROES_REQUEST:
 			return {
 				...state,
-				loading: { search: false, more: true },
+				loading: { search: false, fetchMore: true },
 			};
 		case LOAD_MORE_HEROES_SUCCESS:
 			return {
-				loading: { search: false, more: false },
+				loading: { search: false, fetchMore: false },
 				heroes: [...state.heroes, ...action.payload.heroes],
 				pagesTotal: action.payload.pagesTotal,
 				error: "",
 			};
 		case "CLEAR_STATE":
-			return { pagesTotal: 0, heroes: [], error: "", loading: { search: true, more: false } };
+			return initialState;
 
 		default:
 			return state;

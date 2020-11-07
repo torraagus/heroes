@@ -1,16 +1,18 @@
-import React from "react";
+import React, { FC } from "react";
 import { CategoryTitle } from "../heroDetails.styles";
-import { stats } from "./powerstats.properties";
+import { PowerstatsT, stats } from "./powerstats.properties";
 import { Name, Powerstat, Value } from "./powerstats.styles";
 
-const Powerstats = ({ powerstats }) => {
+type Props = { powerstats: PowerstatsT };
+
+const Powerstats: FC<Props> = ({ powerstats }) => {
 	return (
 		<>
 			<CategoryTitle>Powerstats</CategoryTitle>
-			{stats.map((stat) => (
-				<Powerstat key={stat}>
-					<Name>{stat}</Name>
-					<Value>{powerstats[stat]}</Value>
+			{stats.map((p) => (
+				<Powerstat key={p}>
+					<Name>{p}</Name>
+					<Value>{powerstats[p] !== "null" ? powerstats[p] : "-"}</Value>
 				</Powerstat>
 			))}
 		</>

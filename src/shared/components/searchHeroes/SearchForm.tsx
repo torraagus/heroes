@@ -1,5 +1,6 @@
 import React, { FC, useRef, useState, useEffect } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
+import useScroller from "../../hooks/UseScroller";
 import { Title } from "../home/home.styles";
 import { Form, Submit, Input } from "./searchForm.styles";
 
@@ -23,6 +24,7 @@ const SearchForm: FC<Props & RouteComponentProps> = ({
 }) => {
 	const inputRef = useRef(null);
 	const [query, setQuery] = useState(search);
+	const { pageYOffset, arrowAppearOffset } = useScroller();
 
 	const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -33,8 +35,8 @@ const SearchForm: FC<Props & RouteComponentProps> = ({
 	};
 
 	useEffect(() => {
-		inputRef.current.focus();
-	}, []);
+		if (pageYOffset < arrowAppearOffset) inputRef.current.focus();
+	}, [pageYOffset < arrowAppearOffset]);
 
 	return (
 		<>

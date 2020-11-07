@@ -1,16 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 import { Container } from "../../styled/Container";
+import { containerProps } from "./loader.styles";
 
-const Loader = () => {
+const Loader: FC = () => {
 	return (
-		<Container
-			minHeight="100vh"
-			display="flex"
-			flexDir="column"
-			justifyContent="center"
-			alignItems="center"
-			bgColor={"#fff"}
-		>
+		<Container {...containerProps}>
 			<h2>Loading...</h2>
 		</Container>
 	);

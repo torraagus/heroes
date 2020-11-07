@@ -1,9 +1,15 @@
-import React from "react";
+import React, { FC } from "react";
 import { Container } from "../../styled/Container";
 import { Button as LoadMoreBtn } from "../../styled/Button";
 import { props, btnProps } from "./pagination.styles";
 
-const Pagination = ({ page, onPageChange, pagesTotal }) => {
+type Props = {
+	page: number;
+	pagesTotal: number;
+	onPageChange: (page: number) => void;
+};
+
+const Pagination: FC<Props> = ({ page, onPageChange, pagesTotal }) => {
 	return (
 		<Container {...props}>
 			{pagesTotal > page && (

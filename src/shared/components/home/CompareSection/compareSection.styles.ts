@@ -9,7 +9,7 @@ export const containerProps = {
 	flexDir: "column",
 	justifyContent: "center",
 	alignItems: "center",
-	bgColor: colors.secondary,
+	bgColor: colors.fourth,
 	padding: "2rem 0",
-	color: "white",
+	// color: "white",
 };

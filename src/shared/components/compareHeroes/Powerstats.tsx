@@ -1,13 +1,15 @@
-import React from "react";
-import { stats } from "../heroDetails/powerstats/powerstats.properties";
+import React, { FC } from "react";
+import { PowerstatsT, stats } from "../heroDetails/powerstats/powerstats.properties";
 import { Name, Powerstat, Value } from "./powerstats.styles";
 
-const Powerstats = ({ hero }) => {
+type Props = { powerstats: PowerstatsT };
+
+const Powerstats: FC<Props> = ({ powerstats }) => {
 	return (
 		<>
 			{stats.map((p) => (
 				<Powerstat key={p}>
-					<Name>{p}: </Name> <Value>{hero[p] !== "null" ? hero[p] : "-"}</Value>
+					<Name>{p}: </Name> <Value>{powerstats[p] !== "null" ? powerstats[p] : "-"}</Value>
 				</Powerstat>
 			))}
 		</>

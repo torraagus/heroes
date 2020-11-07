@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { Dispatch, FC, useEffect } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { compose } from "redux";
+import { RouteComponentProps, withRouter } from "react-router-dom";
+import { AnyAction, compose } from "redux";
 import { clearHeroeDetails, fetchHeroeDetails } from "../../redux/heroeDetails/heroeDetailsAction";
 import St from "./heroDetails.styles";
 import { Container } from "../../styled/Container";
@@ -12,10 +12,19 @@ import Biography from "./biography/Biography";
 import Work from "./work/Work";
 import Connections from "./connections/Connections";
 import Powerstats from "./powerstats/Powerstats";
-import Appareance from "./appareance/Appareance";
+import Appearance from "./appearance/Appearance";
 import { isEmpty } from "../../utils";
+import { HeroDetailsStateT } from "../../redux/heroeDetails/heroeDetailsReducer";
+import { RootState } from "../../redux/rootReducer";
+import { ThunkDispatch } from "redux-thunk";
 
-const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
+type Props = {
+	hero: HeroDetailsStateT;
+	fetchHeroe: (id: string) => (dispatch: Dispatch<AnyAction>) => void;
+	clearState: () => (dispatch: Dispatch<AnyAction>) => void;
+};
+
+const HeroeDetails: FC<Props & RouteComponentProps> = ({ hero, fetchHeroe, clearState, location }) => {
 	useEffect(() => {
 		fetchHeroe(location.pathname.split("/").pop());
 		return () => {
@@ -28,11 +37,11 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
 	) : (
 		<Container {...St.mainWrapperProps}>
 			{hero.error !== "" && <NoHeroError title="Error" desc={hero.error} showBtn />}
-			{!isEmpty(hero.details) && (
+			{!isEmpty(hero.details) && !Array.isArray(hero.details) && (
 				<Container {...St.wrapperProps}>
 					<>
 						<BackButton back />
-						<St.Image src={hero.details.image?.url} />
+						<St.Image src={hero.details.image.url} />
 						<St.Name>{hero.details.name}</St.Name>
 						{hero.details.id && <St.Id>Heroe #{hero.details.id}</St.Id>}
 						<Container {...St.mainContainerProps}>
@@ -43,7 +52,7 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
 							</Container>
 							<Container {...St.rightContainerProps}>
 								<Powerstats powerstats={hero.details.powerstats} />
-								<Appareance appearance={hero.details.appearance} />
+								<Appearance appearance={hero.details.appearance} />
 							</Container>
 						</Container>
 					</>
@@ -53,13 +62,13 @@ const HeroeDetails = ({ hero, fetchHeroe, clearState, location }) => {
 	);
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: RootState) => {
 	return {
-		hero: state.heroeDetails.details.comparison ? { error: "", loading: true, details: {} } : state.heroeDetails,
+		hero: state.heroeDetails.details instanceof Array ? { error: "", loading: true, details: {} } : state.heroeDetails,
 	};
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<{}, undefined, undefined>) => {
 	return {
 		fetchHeroe: (id: string) => dispatch(fetchHeroeDetails(id)),
 		clearState: () => dispatch(clearHeroeDetails()),

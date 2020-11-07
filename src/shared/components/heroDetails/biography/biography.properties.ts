@@ -1,3 +1,13 @@
+export interface BiographyI {
+	"full-name": string;
+	"alter-egos": string;
+	aliases: string[];
+	"place-of-birth": string;
+	"first-appareance": string;
+	publisher: string;
+	alignment: string;
+}
+
 export const properties = [
 	{ name: "Full name", prop: "full-name" },
 	{ name: "Alter egos", prop: "alter-egos" },

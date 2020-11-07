@@ -9,7 +9,7 @@ export const apiContainer = {
 	flexDir: "column",
 	justifyContent: "center",
 	alignItems: "center",
-	bgColor: colors.primary,
+	bgColor: colors.secondary,
 	color: "#fff",
 };
 

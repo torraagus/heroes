@@ -1,8 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 import { CategoryTitle, Property, PropertyName, PropertyValue } from "../heroDetails.styles";
-import { properties } from "./work.properties";
+import { properties, WorkT } from "./work.properties";
 
-const Work = ({ work }) => {
+type Props = { work: WorkT };
+
+const Work: FC<Props> = ({ work }) => {
 	return (
 		<>
 			<CategoryTitle>Work</CategoryTitle>

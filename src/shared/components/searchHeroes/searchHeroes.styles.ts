@@ -1,33 +1,6 @@
-import styled from "styled-components";
 import { colors } from "../../../browser/styles/colors";
 
-export const HomeBtn = styled.button`
-	border-radius: 10px;
-	border: none;
-	background-color: #eee;
-	color: ${colors.primary};
-	font-weight: bold;
-	text-transform: uppercase;
-	padding: 0.5rem 1rem;
-	font-size: 11px;
-	outline: none;
-
-	:hover {
-		cursor: pointer;
-		opacity: 75%;
-	}
-
-	:active {
-		cursor: pointer;
-		opacity: 90%;
-	}
-`;
-
-export const Error = styled.i`
-	color: red;
-`;
-
-export const mainWrapperProps = {
+const mainWrapperProps = {
 	minHeight: "auto",
 	display: "flex",
 	flexDir: "column",
@@ -38,7 +11,7 @@ export const mainWrapperProps = {
 	margin: "10vh 0 0 0",
 };
 
-export const wrapperProps = {
+const wrapperProps = {
 	width: "70vw",
 	width1366: "90vw",
 
@@ -48,7 +21,7 @@ export const wrapperProps = {
 	flexDir768: "column",
 };
 
-export const leftContainerProps = {
+const leftContainerProps = {
 	width: "20vw",
 	width1366: "38vw",
 	width768: "90vw",
@@ -65,7 +38,7 @@ export const leftContainerProps = {
 	shadow768: false,
 };
 
-export const rightContainerProps = {
+const rightContainerProps = {
 	width: "50vw",
 	width1366: "52vw",
 	width768: "90vw",
@@ -77,10 +50,10 @@ export const rightContainerProps = {
 	flexDir: "column",
 	justifyContent: "center",
 	alignItems: "center",
-	alignItems768: "flex-start",
+	alignItems768: "center",
 };
 
-export const searchFormProps = {
+const searchFormProps = {
 	flexDir: "column",
 	borderBottom: `1px solid ${colors.primary}`,
 	margin: "0 1rem 1rem 0",
@@ -88,11 +61,20 @@ export const searchFormProps = {
 	minWidth: "auto",
 };
 
-export const loaderContainerProps = {
+const loaderContainerProps = {
 	minHeight: "40px",
 	width: "100%",
 	display: "flex",
 	justifyContent: "center",
 	alignItems: "center",
 	margin: "1rem 0",
+};
+
+export default {
+	mainWrapperProps,
+	wrapperProps,
+	leftContainerProps,
+	rightContainerProps,
+	searchFormProps,
+	loaderContainerProps,
 };

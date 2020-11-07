@@ -15,7 +15,7 @@ export const wrapperProps = {
 	flexDir768: "column",
 };
 
-export const heroProps = {
+export const containerProps = {
 	minHeight: "auto",
 	width: "auto",
 	padding: "1rem",

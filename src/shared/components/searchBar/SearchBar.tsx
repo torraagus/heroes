@@ -8,7 +8,7 @@ type Props = {
 	width: number;
 };
 
-const SearchBar: FC<RouteComponentProps<any> & Props> = ({ onClose, history, width }) => {
+const SearchBar: FC<RouteComponentProps & Props> = ({ onClose, history, width }) => {
 	const [query, setQuery] = useState<string>("");
 	const [isSearching, setIsSearching] = useState<boolean>(true);
 	const searchInput = useRef<HTMLInputElement>(null);

@@ -15,7 +15,7 @@ export const FilterName = styled.p`
 	font-size: 14px;
 	color: ${colors.primary};
 	padding: 0.25rem 0;
-	letter-spacing: 3px;
+	/* letter-spacing: 3px; */
 	text-transform: capitalize;
 `;
 

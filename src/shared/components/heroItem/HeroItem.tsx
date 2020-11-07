@@ -1,10 +1,12 @@
 import React, { FC } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
+import { HeroDetailsT } from "../../redux/heroeDetails/heroeDetailsReducer";
+// import { HeroInfoT } from "../../redux/heroeDetails/heroeDetailsReducer";
 import { Container } from "../../styled/Container";
 import HeroImage from "../heroImage/HeroImage";
 import { containerProps, Id, Name } from "./heroItem.styles";
 
-type Props = { hero: { name: string; id: string; image: { url: string } } };
+type Props = { hero: HeroDetailsT };
 
 const HeroItem: FC<Props & RouteComponentProps> = ({ hero, history }) => {
 	return (

@@ -5,16 +5,14 @@ import CompareSection from "./CompareSection/CompareSection";
 import SearchSection from "./searchSection/SearchSection";
 import { apiContainer, footerContainer } from "./home.styles";
 
-interface Props {}
-
-const Home: FC<Props> = () => {
+const Home: FC = () => {
 	return (
 		<>
 			<SearchSection />
 			<CompareSection />
 			<Container {...apiContainer}>
 				Heroes data thanks to SuperHero API
-				<a style={{ color: colors.fourth }} href="https://superheroapi.com/">
+				<a style={{ color: colors.terciary }} href="https://superheroapi.com/">
 					https://superheroapi.com/
 				</a>
 			</Container>

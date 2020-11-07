@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { FC, ReactNode, useState } from "react";
+import { HeroDetailsT } from "../../redux/heroeDetails/heroeDetailsReducer";
 import { LoaderIcon } from "../heroItem/heroItem.styles";
 import { Image } from "./heroImage.styles";
 
-const HeroImage = ({ hero, children: heroInfo }) => {
+type Props = { hero: HeroDetailsT; children: ReactNode };
+
+const HeroImage: FC<Props> = ({ hero, children: heroInfo }) => {
 	const [imgLoaded, setImgLoaded] = useState(false);
 
 	return (

@@ -1,34 +1,39 @@
-import React from "react";
+import React, { FC } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 import { compose } from "redux";
+import { HeroDetailsStateT } from "../../redux/heroeDetails/heroeDetailsReducer";
+import { RootState } from "../../redux/rootReducer";
 import { Container } from "../../styled/Container";
 import HeroImage from "../heroImage/HeroImage";
-import { wrapperProps, heroProps, HeroId, HeroName } from "./compareHeroes.styles";
+import { wrapperProps, containerProps, HeroId, HeroName } from "./compareHeroes.styles";
 import CompareHeroesForm from "./CompareHeroesForm";
 import Powerstats from "./Powerstats";
 
-const CompareHeroes = ({ hero, history }) => {
+type Props = { hero: HeroDetailsStateT };
+
+const CompareHeroes: FC<Props & RouteComponentProps> = ({ hero, history }) => {
 	return (
 		<>
 			<CompareHeroesForm />
 			<Container {...wrapperProps}>
 				{hero.error && <p style={{ color: "red" }}>{hero.error}</p>}
-				{hero.details.comparison?.map((hero, i) => (
-					<Container {...heroProps} key={hero.id + i} onClick={() => history.push(`heroes/${hero.id}`)}>
-						<HeroImage hero={hero}>
-							<HeroId>#{hero.id}</HeroId>
-							<HeroName>{hero.name}</HeroName>
-							<Powerstats hero={hero} />
-						</HeroImage>
-					</Container>
-				))}
+				{Array.isArray(hero.details) &&
+					hero.details.map((hero, i) => (
+						<Container {...containerProps} key={hero.id + i} onClick={() => history.push(`heroes/${hero.id}`)}>
+							<HeroImage hero={hero}>
+								<HeroId>#{hero.id}</HeroId>
+								<HeroName>{hero.name}</HeroName>
+								<Powerstats powerstats={hero.powerstats} />
+							</HeroImage>
+						</Container>
+					))}
 			</Container>
 		</>
 	);
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: RootState) => {
 	return {
 		hero: state.heroeDetails,
 	};

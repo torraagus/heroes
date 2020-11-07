@@ -1,9 +1,11 @@
-import React from "react";
+import React, { FC } from "react";
 import { CategoryTitle, Property, PropertyName, PropertyValue } from "../heroDetails.styles";
-import { properties } from "./biography.properties";
+import { properties, BiographyI } from "./biography.properties";
 import { Alias, AliasesWrapper } from "./biography.styles";
 
-const Biography = ({ heroName, biography }) => {
+type Props = { heroName: string; biography: BiographyI };
+
+const Biography: FC<Props> = ({ heroName, biography }) => {
 	return (
 		<>
 			<CategoryTitle>Biography</CategoryTitle>

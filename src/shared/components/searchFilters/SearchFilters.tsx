@@ -4,13 +4,18 @@ import { capitalize } from "../../utils";
 import { options } from "./options";
 import { containerProps, FilterName, Form, Options, Option, Title } from "./searchFilters.styles";
 
+export type Filter = {
+	by: string;
+	value: string;
+};
+
 type Props = {
-	filters: { by: string; value: string }[];
-	onFilterSelected: (filters) => void;
+	filters: Filter[];
+	onFilterSelected: (filters: Filter[]) => void;
 };
 
 const SearchFilters: FC<Props> = ({ onFilterSelected, filters }) => {
-	const reducer = (activeFilters, currFilter) => {
+	const reducer = (activeFilters: Filter[], currFilter: Filter) => {
 		const index = activeFilters.findIndex((filter) => filter.by === currFilter.by);
 		if (index != -1) activeFilters.splice(index, 1);
 		return [...activeFilters, currFilter];
@@ -28,7 +33,6 @@ const SearchFilters: FC<Props> = ({ onFilterSelected, filters }) => {
 		}
 	};
 
-	console.log(filters);
 	return (
 		<>
 			<Title>Filters</Title>
@@ -41,7 +45,7 @@ const SearchFilters: FC<Props> = ({ onFilterSelected, filters }) => {
 								value={filters?.find((f) => f.by === Object.keys(opt)[0])?.value}
 								onChange={(e) => handleOnChange(Object.keys(opt)[0], e.target.value)}
 							>
-								{console.log(Object.values(opt)[0])}
+								{/* {console.log(Object.values(opt)[0])} */}
 								{Object.values(opt)[0].map((opt, i) => (
 									<Option key={i} value={opt}>
 										{capitalize(opt)}

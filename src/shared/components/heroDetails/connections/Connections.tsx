@@ -1,8 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 import { CategoryTitle, Property, PropertyName, PropertyValue } from "../heroDetails.styles";
-import { properties } from "./connections.properties";
+import { properties, ConnectionsT } from "./connections.properties";
 
-const Connections = ({ connections }) => {
+type Props = { connections: ConnectionsT };
+
+const Connections: FC<Props> = ({ connections }) => {
 	return (
 		<>
 			<CategoryTitle>Connections</CategoryTitle>
