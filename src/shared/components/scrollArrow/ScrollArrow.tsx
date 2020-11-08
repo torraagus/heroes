@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { MdKeyboardArrowUp } from "react-icons/md";
-import useScroller from "../../hooks/UseScroller";
+import useScroller from "../../hooks/useScroller";
 import { Arrow } from "./scrollArrow.styles";
 
 const ScrollArrow: FC = () => {

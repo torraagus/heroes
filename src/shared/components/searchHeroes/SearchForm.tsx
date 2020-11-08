@@ -1,6 +1,6 @@
 import React, { FC, useRef, useState, useEffect } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import useScroller from "../../hooks/UseScroller";
+import useScroller from "../../hooks/useScroller";
 import { Title } from "../home/home.styles";
 import { Form, Submit, Input } from "./searchForm.styles";
 

@@ -3,8 +3,8 @@ import { compareHeroes } from "../../redux";
 import { connect } from "react-redux";
 import { Form, Input, Submit } from "./compareHeroesForm.styles";
 import { ThunkDispatch } from "redux-thunk";
-import { AnyAction, compose } from "redux";
-import useScroller from "../../hooks/UseScroller";
+import { AnyAction } from "redux";
+import useScroller from "../../hooks/useScroller";
 
 type Props = { compare: (idOne: string, idTwo: string) => (dispatch: Dispatch<AnyAction>) => void };
 
