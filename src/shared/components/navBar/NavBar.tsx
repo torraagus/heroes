@@ -39,7 +39,7 @@ const NavBar: React.FC<RouteComponentProps & Props> = ({ history, onSearch }) =>
 			<BlackScreen show={isOpen} onClick={() => setIsOpen(false)} />
 			<Wrapper>
 				<Nav>
-					<Logo onClick={() => handleOnClick("/", false)}>Heroes</Logo>
+					<Logo onClick={() => handleOnClick("/", false)}>Heroar</Logo>
 					<Menu className={isOpen ? "isActive" : ""}>
 						{items.map((item) =>
 							item.name !== "Home" ? (
