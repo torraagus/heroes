@@ -2,6 +2,7 @@ const path = require("path"),
 	webpack = require("webpack"),
 	nodeExternals = require("webpack-node-externals"),
 	MiniCssExtractPlugin = require("mini-css-extract-plugin"),
+	CopyWebpackPlugin = require("copy-webpack-plugin"),
 	dotenv = require("dotenv");
 
 module.exports = () => {
@@ -61,6 +62,9 @@ module.exports = () => {
 		},
 		plugins: [
 			new webpack.EnvironmentPlugin(["NODE_ENV", "HEROES_TOKEN"]),
+			new CopyWebpackPlugin({
+				patterns: [{ from: "./src/favicon.ico" }],
+			}),
 			new MiniCssExtractPlugin({
 				filename: "styles.css",
 			}),
