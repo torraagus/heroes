@@ -34,9 +34,13 @@ const SearchForm: FC<Props & RouteComponentProps> = ({
 		});
 	};
 
+	// useEffect(() => {
+	// 	if (pageYOffset < arrowAppearOffset) inputRef.current.focus();
+	// }, [pageYOffset < arrowAppearOffset]);
+
 	useEffect(() => {
-		if (pageYOffset < arrowAppearOffset) inputRef.current.focus();
-	}, [pageYOffset < arrowAppearOffset]);
+		inputRef.current.focus();
+	}, []);
 
 	return (
 		<>
