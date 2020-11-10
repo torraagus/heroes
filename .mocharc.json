@@ -1,6 +1,6 @@
 {
-	"extension": ["ts"],
-	"spec": "src/**/*.test.ts",
+	"require": ["./test/babel-register.js", "./test/helpers.js", "./test/dom.js"],
+	"spec": ["src/**/*.test.ts", "src/**/*.test.tsx"],
 	"slow": 75,
 	"timeout": 2000
 }
