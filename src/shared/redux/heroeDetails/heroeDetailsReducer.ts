@@ -37,7 +37,7 @@ export type HeroDetailsT = {
 	biography?: BiographyI;
 	work?: WorkT;
 	connections?: ConnectionsT;
-	powerstats: PowerstatsT;
+	powerstats?: PowerstatsT;
 	appearance?: AppearanceI;
 };
 
