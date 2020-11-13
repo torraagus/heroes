@@ -81,28 +81,28 @@ describe("src/shared/components/searchFilters.tsx", () => {
 	});
 
 	it("should select Marvel Comics as publisher", () => {
-		const props = { filters: [], onFilterSelected: ([]) => {} };
+		const props = { filters: [{ by: "publisher", value: "DC Comics" }], onFilterSelected: ([]) => {} };
 		const wrapper = shallow(<SearchFilters {...props} />);
 
 		wrapper
 			.find(Options)
 			.at(0)
-			.simulate("change", { target: { value: { by: "publisher", value: "Marvel Comics" } } });
+			.simulate("change", { target: { value: "Marvel Comics" } });
 	});
 
-	it("should render when Both or All option publisher select", () => {
-		const props = { filters: [], onFilterSelected: ([]) => {} };
+	it("should render fine when Both or All option is selected", () => {
+		const props = { filters: [{ by: "gender", value: "Male" }], onFilterSelected: ([]) => {} };
 		const wrapper = shallow(<SearchFilters {...props} />);
 
 		wrapper
 			.find(Options)
-			.at(2)
-			.simulate("change", { target: { value: { by: "publisher", value: "All" } } });
+			.at(0)
+			.simulate("change", { target: { value: "All" } });
 	});
 
 	it("should render when filters are populated", () => {
-		const props = { filters: [{ by: "gender", value: "Male" }], onFilterSelected: ([]) => {} };
+		const props = { filters: [{ by: "publisher", value: "DC Comics" }], onFilterSelected: ([]) => {} };
 		const wrapper = shallow(<SearchFilters {...props} />);
-		expect(wrapper.render().find(`select [selected]`).val()).to.equal("Male");
+		expect(wrapper.render().find(`select [selected]`).val()).to.equal("DC Comics");
 	});
 });
