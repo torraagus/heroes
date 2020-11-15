@@ -1,6 +1,7 @@
 export const resultsProps = {
 	width: "50vw",
-	width1366: "52vw",
+	width1366: "60vw",
+	width1024: "55vw",
 	width768: "90vw",
 
 	minHeight: "auto",

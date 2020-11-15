@@ -56,6 +56,12 @@ const HeroesContainer: FC<Props & RouteComponentProps> = ({
 	) : (
 		<Container {...St.mainWrapperProps}>
 			<BackButton path="/" />
+			{heroesData.error === "" && isEmpty(heroesData.heroes) && (
+				<NoHeroError mobile title="No heroes found" desc="Change the filters or make another search." />
+			)}
+			{heroesData.error !== "" && (
+				<NoHeroError mobile title="Bad query" desc={`No heroes match ${query}. Please make another search.`} />
+			)}
 			<Container {...St.wrapperProps}>
 				<Container {...St.leftContainerProps}>
 					<SearchForm search={query} {...St.searchFormProps} />

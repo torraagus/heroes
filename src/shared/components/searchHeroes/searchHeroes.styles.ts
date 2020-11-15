@@ -1,4 +1,15 @@
+import styled from "styled-components";
 import { colors } from "../../../browser/styles/colors";
+
+const MobileError = styled.div`
+	display: none;
+	width: 90vw;
+	padding: 1rem;
+
+	@media (max-width: 768px) {
+		display: block;
+	}
+`;
 
 const mainWrapperProps = {
 	minHeight: "auto",
@@ -23,7 +34,8 @@ const wrapperProps = {
 
 const leftContainerProps = {
 	width: "20vw",
-	width1366: "38vw",
+	width1366: "30vw",
+	width1024: "35vw",
 	width768: "90vw",
 
 	height: "fit-content",
@@ -40,7 +52,8 @@ const leftContainerProps = {
 
 const rightContainerProps = {
 	width: "50vw",
-	width1366: "52vw",
+	width1366: "60vw",
+	width1024: "55vw",
 	width768: "90vw",
 
 	padding768: "2rem 0",
@@ -77,4 +90,5 @@ export default {
 	rightContainerProps,
 	searchFormProps,
 	loaderContainerProps,
+	MobileError,
 };

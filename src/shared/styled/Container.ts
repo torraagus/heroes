@@ -37,6 +37,8 @@ export type ContainerProps = {
 	frames?: string;
 	animationName?: string;
 	animationDelay?: string;
+
+	mobile?: boolean;
 };
 
 export const Container = styled.div<ContainerProps>`
@@ -61,6 +63,8 @@ export const Container = styled.div<ContainerProps>`
 		opacity: ${({ hover }) => hover && "75%"};
 		border-radius: ${({ hover }) => hover && "15px"};
 	}
+
+	${({ mobile }) => mobile && `@media (min-width: 768px) {display: none;}`};
 
 	@media (max-width: 1366px) {
 		width: ${({ width1366 }) => width1366 && width1366};
