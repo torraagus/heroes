@@ -13,7 +13,7 @@ import Work from "./work/Work";
 import Connections from "./connections/Connections";
 import Powerstats from "./powerstats/Powerstats";
 import Appearance from "./appearance/Appearance";
-import { isEmpty } from "../../utils";
+import { isEmpty } from "../../utils/utils";
 import { HeroDetailsStateT } from "../../redux/heroeDetails/heroeDetailsReducer";
 import { RootState } from "../../redux/rootReducer";
 import { ThunkDispatch } from "redux-thunk";

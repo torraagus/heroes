@@ -1,5 +1,5 @@
 import { colors } from "../../../browser/styles/colors";
-import { getRandomInt } from "../../utils";
+import { getRandomInt } from "../../utils/utils";
 import { START_LOADING_BAR, FULL_LOADING_BAR } from "./loadingTypes";
 
 type ActionT = {

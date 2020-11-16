@@ -24,7 +24,7 @@ const SearchForm: FC<Props & RouteComponentProps> = ({
 }) => {
 	const inputRef = useRef(null);
 	const [query, setQuery] = useState(search);
-	const { pageYOffset, arrowAppearOffset } = useScroller();
+	// const { pageYOffset, arrowAppearOffset } = useScroller();
 
 	const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -34,9 +34,13 @@ const SearchForm: FC<Props & RouteComponentProps> = ({
 		});
 	};
 
+	// useEffect(() => {
+	// 	if (pageYOffset < arrowAppearOffset) inputRef.current.focus();
+	// }, [pageYOffset < arrowAppearOffset]);
+
 	useEffect(() => {
-		if (pageYOffset < arrowAppearOffset) inputRef.current.focus();
-	}, [pageYOffset < arrowAppearOffset]);
+		inputRef.current.focus();
+	}, []);
 
 	return (
 		<>

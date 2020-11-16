@@ -1,6 +1,6 @@
 import React, { FC, Fragment } from "react";
 import { Container } from "../../styled/Container";
-import { capitalize } from "../../utils";
+import { capitalize } from "../../utils/utils";
 import { options } from "./options";
 import { containerProps, FilterName, Form, Options, Option, Title } from "./searchFilters.styles";
 

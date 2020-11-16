@@ -5,7 +5,7 @@ import { RouteComponentProps, withRouter } from "react-router-dom";
 import { AnyAction, Dispatch, compose } from "redux";
 import { clearState, searchHeroes, fetchMoreHeroes } from "../../redux";
 import { Container } from "../../styled/Container";
-import { isEmpty } from "../../utils";
+import { isEmpty } from "../../utils/utils";
 import { SearchHeroesState } from "../../redux/searchHeroes/searchHeroesReducer";
 import { RootState } from "../../redux/rootReducer";
 import { ThunkDispatch } from "redux-thunk";

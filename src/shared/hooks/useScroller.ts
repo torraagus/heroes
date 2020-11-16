@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
 
-function useScroller() {
+export interface ScrollI {
+	showScroll: boolean;
+	pageYOffset: number;
+	arrowAppearOffset: number;
+	scrollTop: () => void;
+}
+
+function useScroller(): ScrollI {
 	const arrowAppearOffset = 400;
 	const [showScroll, setShowScroll] = useState(false);
 	const [pageYOffset, setPageYOffset] = useState(0);

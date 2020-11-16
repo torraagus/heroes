@@ -11,7 +11,7 @@ type Props = { compare: (idOne: string, idTwo: string) => (dispatch: Dispatch<An
 const CompareHeroesForm: FC<Props> = ({ compare }) => {
 	const [idOne, setIdOne] = useState("");
 	const [idTwo, setIdTwo] = useState("");
-	const { pageYOffset, arrowAppearOffset } = useScroller();
+	// const { pageYOffset, arrowAppearOffset } = useScroller();
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -19,9 +19,13 @@ const CompareHeroesForm: FC<Props> = ({ compare }) => {
 		compare(idOne, idTwo);
 	};
 
+	// useEffect(() => {
+	// 	if (pageYOffset > arrowAppearOffset) inputRef.current.focus();
+	// }, [pageYOffset > arrowAppearOffset]);
+
 	useEffect(() => {
-		if (pageYOffset > arrowAppearOffset) inputRef.current.focus();
-	}, [pageYOffset > arrowAppearOffset]);
+		inputRef.current.focus();
+	}, []);
 
 	return (
 		<Form onSubmit={(e) => handleOnSubmit(e)}>
