@@ -29,9 +29,9 @@ const NavBar: React.FC<RouteComponentProps & Props> = ({ history, onSearch }) =>
 	};
 
 	useLayoutEffect(() => {
-		if (location.hash === "#compare") ref.current.click();
-		// setTimeout(() => {
-		// }, 500);
+		setTimeout(() => {
+			if (history.location.hash === "#compare") ref.current.click();
+		}, 500);
 	}, []);
 
 	return (
