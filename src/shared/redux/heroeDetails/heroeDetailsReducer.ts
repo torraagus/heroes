@@ -11,7 +11,7 @@ import {
 
 type ActionT = {
 	type: string;
-	payload: HeroDetailsT | [HeroDetailsT, HeroDetailsT];
+	payload: HeroDetailsT | [HeroDetailsT, HeroDetailsT] | string;
 };
 
 // export type HeroInfoT = {
