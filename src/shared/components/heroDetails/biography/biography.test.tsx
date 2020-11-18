@@ -12,12 +12,13 @@ describe("src/shared/components/heroDetails/Biography.tsx", () => {
 				"alter-egos": "",
 				aliases: ["a", "b"],
 				"place-of-birth": "",
-				"first-appareance": "",
+				"first-appearance": "",
 				publisher: "",
-				alignment: "",
+				alignment: "good",
 			},
 		};
 		const wrapper = shallow(<Biography {...props} />);
+		console.log(wrapper.debug());
 		expect(wrapper).exist;
 	});
 });
