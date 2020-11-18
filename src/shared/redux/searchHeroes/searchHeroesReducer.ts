@@ -9,7 +9,7 @@ import {
 
 type Action = {
 	type: string;
-	payload: { heroes: HeroDetailsT[]; pagesTotal: number };
+	payload: { heroes: HeroDetailsT[]; pagesTotal: number } & string;
 };
 
 export type SearchHeroesState = {

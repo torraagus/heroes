@@ -11,7 +11,7 @@ import {
 
 type ActionT = {
 	type: string;
-	payload: HeroDetailsT | [HeroDetailsT, HeroDetailsT];
+	payload: HeroDetailsT | [HeroDetailsT, HeroDetailsT] | string;
 };
 
 // export type HeroInfoT = {
@@ -37,7 +37,7 @@ export type HeroDetailsT = {
 	biography?: BiographyI;
 	work?: WorkT;
 	connections?: ConnectionsT;
-	powerstats: PowerstatsT;
+	powerstats?: PowerstatsT;
 	appearance?: AppearanceI;
 };
 

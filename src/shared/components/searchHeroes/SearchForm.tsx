@@ -24,7 +24,7 @@ const SearchForm: FC<Props & RouteComponentProps> = ({
 }) => {
 	const inputRef = useRef(null);
 	const [query, setQuery] = useState(search);
-	const { pageYOffset, arrowAppearOffset } = useScroller();
+	// const { pageYOffset, arrowAppearOffset } = useScroller();
 
 	const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
