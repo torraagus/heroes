@@ -23,9 +23,9 @@ const CompareHeroesForm: FC<Props> = ({ compare }) => {
 	// 	if (pageYOffset > arrowAppearOffset) inputRef.current.focus();
 	// }, [pageYOffset > arrowAppearOffset]);
 
-	useEffect(() => {
-		inputRef.current.focus();
-	}, []);
+	// useEffect(() => {
+	// 	inputRef.current.focus();
+	// }, []);
 
 	return (
 		<Form onSubmit={(e) => handleOnSubmit(e)}>

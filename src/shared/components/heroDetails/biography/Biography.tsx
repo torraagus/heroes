@@ -13,11 +13,17 @@ const Biography: FC<Props> = ({ heroName, biography }) => {
 				return (
 					<Property key={p.name}>
 						<PropertyName>{p.name}</PropertyName>
-						{index !== 2 && index !== 6 ? (
-							<PropertyValue>{biography[p.prop] != "" ? biography[p.prop] : heroName}</PropertyValue>
+						{index !== 0 && index !== 2 && index !== 6 ? (
+							<PropertyValue>
+								{biography[p.prop] !== "" && biography[p.prop] !== "null" ? biography[p.prop] : "-"}
+							</PropertyValue>
 						) : index === 6 ? (
 							<PropertyValue textTransform="capitalize">
-								{biography[p.prop] != "" ? biography[p.prop] : heroName}
+								{biography[p.prop] !== "" && biography[p.prop] !== "null" ? biography[p.prop] : "-"}
+							</PropertyValue>
+						) : index === 0 ? (
+							<PropertyValue>
+								{biography[p.prop] !== "" && biography[p.prop] !== "null" ? biography[p.prop] : heroName}
 							</PropertyValue>
 						) : (
 							<AliasesWrapper>
