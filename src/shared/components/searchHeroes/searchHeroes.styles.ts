@@ -56,12 +56,14 @@ const rightContainerProps = {
 	width1024: "55vw",
 	width768: "90vw",
 
-	padding768: "2rem 0",
+	padding768: "1rem 0",
 
 	minHeight: "auto",
 	display: "flex",
 	flexDir: "column",
 	justifyContent: "center",
+	justifyContent768: "flex-start",
+
 	alignItems: "center",
 	alignItems768: "center",
 };

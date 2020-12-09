@@ -7,6 +7,10 @@ export const resultsProps = {
 	minHeight: "auto",
 	display: "flex",
 	flexWrap: "wrap",
+	flexWrap768: "nowrap",
+
 	justifyContent: "center",
-	justifyContent768: "center",
+	justifyContent768: "flex-start",
+
+	overflowX768: "auto",
 };

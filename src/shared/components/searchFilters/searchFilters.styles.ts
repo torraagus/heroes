@@ -9,6 +9,11 @@ export const Title = styled.h4`
 
 export const Form = styled.form`
 	margin: 0 1rem 0 0;
+
+	@media (max-width: 768px) {
+		overflow-x: auto;
+		padding: 0 0 0.5rem 0;
+	}
 `;
 
 export const FilterName = styled.p`
@@ -17,6 +22,10 @@ export const FilterName = styled.p`
 	padding: 0.25rem 0;
 	/* letter-spacing: 3px; */
 	text-transform: capitalize;
+
+	@media (max-width: 768px) {
+		margin: 0 0.5rem;
+	}
 `;
 
 export const Options = styled.select`
@@ -34,4 +43,6 @@ export const Option = styled.option`
 export const containerProps = {
 	width: "100%",
 	padding: ".5rem 0 0 0",
+	display768: "flex",
+	alignItems768: "center",
 };

@@ -9,6 +9,8 @@ export type ContainerProps = {
 	height?: string;
 	minHeight?: string;
 	display?: string;
+	display768?: string;
+
 	flexDir?: string;
 	flexDir768?: string;
 	flexDir1024?: string;
@@ -26,6 +28,8 @@ export type ContainerProps = {
 	padding1024?: string;
 
 	flexWrap?: string;
+	flexWrap768?: string;
+
 	hover?: boolean;
 	maxHeight?: string;
 	borderRadius?: string;
@@ -39,6 +43,8 @@ export type ContainerProps = {
 	animationDelay?: string;
 
 	mobile?: boolean;
+
+	overflowX768?: string;
 };
 
 export const Container = styled.div<ContainerProps>`
@@ -81,6 +87,10 @@ export const Container = styled.div<ContainerProps>`
 		flex-direction: ${({ flexDir768 }) => flexDir768 && flexDir768};
 		padding: ${({ padding768 }) => padding768 && padding768};
 		justify-content: ${({ justifyContent768 }) => justifyContent768 && justifyContent768};
+		flex-wrap: ${({ flexWrap768 }) => flexWrap768 && flexWrap768};
+		overflow-x: ${({ overflowX768 }) => overflowX768 && overflowX768};
+		display: ${({ display768 }) => display768 && display768};
+		align-items: ${({ alignItems768 }) => alignItems768 && alignItems768};
 	}
 
 	@media (min-width: 768px) {
